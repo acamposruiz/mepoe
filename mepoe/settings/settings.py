@@ -37,6 +37,9 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'south',
+    'autofixture',
+    'bootstrapform',
+    'easy_thumbnails',
     'werkzeug',
     'django_extensions',
     # 'social.apps.django_app.default',
@@ -86,4 +89,51 @@ TEMPLATE_DIRS = (
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR.child('public', 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR.child('public', 'media')
+
 FORCE_SCRIPT_NAME = '/'
+
+# from .logging_settings import *
+# LOGING
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'mepoe.log'),
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        # 'MYAPP': {
+        #     'handlers': ['file'],
+        #     'level': 'DEBUG',
+        # },
+    },
+    'formatters': {
+        'verbose': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+}
+
+
+# from .thumbnail_settings import *
+# 
+
+SOUTH_MIGRATION_MODULES = {
+    'easy_thumbnails': 'easy_thumbnails.south_migrations',
+}
