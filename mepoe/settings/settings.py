@@ -10,7 +10,10 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+# BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+from unipath import Path
+BASE_DIR = Path(__file__).ancestor(3) 
 
 
 # Quick-start development settings - unsuitable for production
@@ -20,11 +23,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '@frpw&7+9160zzhx*4r=5n-%d+-v&n-765-k(x4h!)8$3p_ei5'
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-TEMPLATE_DEBUG = False
 
 # Application definition
 
@@ -64,16 +62,6 @@ ROOT_URLCONF = 'mepoe.urls'
 WSGI_APPLICATION = 'mepoe.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
@@ -91,8 +79,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR,  'templates'),
+    BASE_DIR.child('public', 'templates'),
 )
+
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR.child('public', 'static')
+FORCE_SCRIPT_NAME = '/'
