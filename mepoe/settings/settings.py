@@ -19,7 +19,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '@frpw&7+9160zzhx*4r=5n-%d+-v&n-765-k(x4h!)8$3p_ei5'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
+
+TEMPLATE_DEBUG = False
 
 # Application definition
 
@@ -34,6 +39,8 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'south',
+    'werkzeug',
+    'django_extensions',
     # 'social.apps.django_app.default',
     # 'djrill',
 )
