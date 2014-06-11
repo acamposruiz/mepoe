@@ -1,3 +1,24 @@
-venv
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+
+# OS
+.DS_Store
+
+# Python
 *.pyc
-staticfiles
+*.pyo
+
+# Sublime Text
+*sublime

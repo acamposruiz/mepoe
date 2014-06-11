@@ -1,0 +1,13 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "/Users/Antonio/Devel/mepoe"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "/Users/Antonio/Devel/django-1.6/SistemaDiscusiones"
+		}
+	]
+}
