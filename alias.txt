@@ -1,0 +1,4 @@
+alias runserver='python manage.py runserver --settings=mepoe.settings.dev'
+alias syncdb='python manage.py syncdb --settings=mepoe.settings.dev'
+alias migrate='python manage.py migrate --settings=mepoe.settings.dev'
+alias help='python manage.py help --settings=mepoe.settings.dev'

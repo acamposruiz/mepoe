@@ -3,35 +3,40 @@
     "model": "tags.Vocabulary",
     "pk": 1,
     "fields": {
-      "name": "Author"
+      "name": "Author",
+      "slug": "author"
     }
   },
   {
     "model": "tags.Vocabulary",
     "pk": 2,
     "fields": {
-      "name": "Book"
+      "name": "Book",
+      "slug": "book"
     }
   },
   {
     "model": "tags.Vocabulary",
     "pk": 3,
     "fields": {
-      "name": "Literary Movement"
+      "name": "Literary Movement",
+      "slug": "literary_movement"
     }
   },
   {
     "model": "tags.Vocabulary",
     "pk": 4,
     "fields": {
-      "name": "Time Period"
+      "name": "Time Period",
+      "slug": "time_period"
     }
   },
   {
     "model": "tags.Vocabulary",
     "pk": 5,
     "fields": {
-      "name": "Country"
+      "name": "Country",
+      "slug": "country"
     }
   }
 ]

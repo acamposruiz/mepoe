@@ -25,8 +25,6 @@ class Vocabulary(models.Model):
 	name = models.CharField(max_length=60)
 	description = models.TextField(blank=True, null=True)
 	slug = models.SlugField(max_length=100)
-	created = models.DateTimeField(auto_now_add=True)
-	update = models.DateTimeField(auto_now=True)
 
 	def __unicode__(self):
 		return self.name
