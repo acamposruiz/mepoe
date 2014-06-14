@@ -141,3 +141,8 @@ LOGGING = {
 SOUTH_MIGRATION_MODULES = {
     'easy_thumbnails': 'easy_thumbnails.south_migrations',
 }
+
+AUTHENTICATION_BACKENDS = (
+    # 'django.contrib.auth.backends.ModelBackend',
+    'userprofiles.backends.EmailBackend',
+)
