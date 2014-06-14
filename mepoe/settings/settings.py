@@ -42,6 +42,7 @@ THIRD_PARTY_APPS = (
     'easy_thumbnails',
     'werkzeug',
     'django_extensions',
+    'debug_toolbar',
     # 'social.apps.django_app.default',
     # 'djrill',
 )
@@ -49,6 +50,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'poems',
     'tags',
+    'userprofiles',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
