@@ -13,7 +13,7 @@ import os
 # BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 from unipath import Path
-BASE_DIR = Path(__file__).ancestor(3) 
+BASE_DIR = Path(__file__).ancestor(3)
 
 
 # Quick-start development settings - unsuitable for production
@@ -48,8 +48,8 @@ THIRD_PARTY_APPS = (
 )
 
 LOCAL_APPS = (
-    'poems',
-    'tags',
+    # 'poems',
+    # 'tags',
     'userprofiles',
 )
 
@@ -136,7 +136,7 @@ LOGGING = {
 
 
 # from .thumbnail_settings import *
-# 
+#
 
 SOUTH_MIGRATION_MODULES = {
     'easy_thumbnails': 'easy_thumbnails.south_migrations',

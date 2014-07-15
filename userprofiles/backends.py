@@ -10,11 +10,11 @@ class EmailBackend(object):
                 return user
             else:
                 return None
-        except User.DoesNoExist:
+        except User.DoesNotExist:
             return None
 
     def get_user(self, user_id):
         try:
             return User.objects.get(id=user_id)
-        except User.DoesNoExist:
+        except User.DoesNotExist:
             return None
