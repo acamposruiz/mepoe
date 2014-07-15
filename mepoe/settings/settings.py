@@ -12,8 +12,10 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 # BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-from unipath import Path
-BASE_DIR = Path(__file__).ancestor(3)
+# from unipath import Path
+# BASE_DIR = Path(__file__).ancestor(3)
+from pathlib import Path
+BASE_DIR = Path(__file__).parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -88,14 +90,17 @@ USE_TZ = True
 
 
 TEMPLATE_DIRS = (
-    BASE_DIR.child('public', 'templates'),
+    'templates',
 )
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR.child('public', 'static')
+STATIC_ROOT = 'public/static'
+STATICFILES_DIRS = (
+    'mepoe/static',
+)
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR.child('public', 'media')
+MEDIA_ROOT = 'media'
 
 FORCE_SCRIPT_NAME = '/'
 
@@ -108,7 +113,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'mepoe.log'),
+            'filename': 'mepoe.log',
             'formatter': 'verbose',
         },
     },
