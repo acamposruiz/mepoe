@@ -5,11 +5,12 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'mepoe.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+                       # Examples:
+                       # url(r'^$', 'mepoe.views.home', name='home'),
+                       # url(r'^blog/', include('blog.urls')),
 
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^', home, name="home"),
-    url(r'^', include('userprofiles.urls', namespace="userprofiles")),
-)
+                       url(r'^admin/', include(admin.site.urls)),
+                       url(r'^$', home, name="home"),
+                       url(r'^', include(
+                           'userprofiles.urls', namespace="userprofiles")),
+                       )

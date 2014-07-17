@@ -40,7 +40,8 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     'south',
     'autofixture',
-    'bootstrapform',
+    # 'bootstrapform',
+    'bootstrap3',
     'easy_thumbnails',
     'werkzeug',
     'django_extensions',
