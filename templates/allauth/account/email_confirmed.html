@@ -1,9 +1,16 @@
-{% extends "account/base.html" %}
+{% extends "layout.html" %}
 
 {% load i18n %}
 {% load account %}
+{% load url from future %}
+{% load bootstrap3 %}
+{% load static from staticfiles %}
 
 {% block head_title %}{% trans "Confirm E-mail Address" %}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/signin_mepoe.css" %}">
+{% endblock css %}
 
 
 {% block content %}
@@ -11,7 +18,7 @@
 <h1>{% trans "Confirm E-mail Address" %}</h1>
 
 {% user_display email_address.user as user_display %}
-        
+
 <p>{% blocktrans with email_address.email as email %}You have confirmed that <a href="mailto:{{email}}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
 
 {% endblock %}
