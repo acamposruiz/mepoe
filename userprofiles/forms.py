@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 
 
 class UserCreationEmailForm(UserCreationForm):
+    username = forms.CharField(
+        max_length=254, widget=forms.TextInput(attrs={'autofocus': True}))
     email = forms.EmailField()
 
     class Meta:

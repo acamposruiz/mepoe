@@ -1,14 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Sign Up</title>
-</head>
-<body>
-	<form action="" method="post">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<input type="submit" value="Submit">
-	</form>
-</body>
-</html>
+{% extends "layout.html" %}
+{% load bootstrap3 %}
+{% load static from staticfiles %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/signin.css" %}">
+{% endblock css %}
+
+{% block title %}Sign Up{% endblock title %}
+
+{% block content %}
+    <form class="form-signin" action="" method="post" role="form">
+        {% csrf_token %}
+        <h2 class="form-signin-heading">Please sign up</h2>
+        {% bootstrap_form form layout='inline' %}
+        {% buttons %}
+            <button type="submit" class="btn btn-lg btn-primary btn-block">
+                Sign up
+            </button>
+        {% endbuttons %}
+    </form>
+{% endblock content %}

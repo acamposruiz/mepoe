@@ -43,17 +43,21 @@ THIRD_PARTY_APPS = (
     # 'bootstrapform',
     'bootstrap3',
     'easy_thumbnails',
+    'guardian',
     'werkzeug',
     'django_extensions',
     'debug_toolbar',
+    'userena',
     # 'social.apps.django_app.default',
     # 'djrill',
 )
 
 LOCAL_APPS = (
+    'accounts',
+    # 'userprof',
     # 'poems',
     # 'tags',
-    'userprofiles',
+    # 'userprofiles',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -65,6 +69,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'userena.middleware.UserenaLocaleMiddleware',
 )
 
 ROOT_URLCONF = 'mepoe.urls'
@@ -131,8 +136,9 @@ LOGGING = {
     },
     'formatters': {
         'verbose': {
-            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-            'datefmt' : "%d/%b/%Y %H:%M:%S"
+            'format': "[%(asctime)s] %(levelname)s \
+            [%(name)s:%(lineno)s] %(message)s",
+            'datefmt': "%d/%b/%Y %H:%M:%S"
         },
         'simple': {
             'format': '%(levelname)s %(message)s'
@@ -148,7 +154,22 @@ SOUTH_MIGRATION_MODULES = {
     'easy_thumbnails': 'easy_thumbnails.south_migrations',
 }
 
+# MAILGUN
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+MAILGUN_ACCESS_KEY = 'key-0vrsqh9l0ik6d0j43b1-8c3n8wc-e3e3'
+MAILGUN_SERVER_NAME = 'mepoe.com'
+
 AUTHENTICATION_BACKENDS = (
-    # 'django.contrib.auth.backends.ModelBackend',
-    'userprofiles.backends.EmailBackend',
+    'userena.backends.UserenaAuthenticationBackend',
+    'guardian.backends.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    # 'userprofiles.backends.EmailBackend',
 )
+
+ANONYMOUS_USER_ID = -1
+
+AUTH_USER_MODEL = 'accounts.MyProfile'
+
+USERENA_SIGNIN_REDIRECT_URL = '/accounts/%(username)s/'
+LOGIN_URL = '/accounts/signin/'
+LOGOUT_URL = '/accounts/signout/'
