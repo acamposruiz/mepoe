@@ -11,7 +11,8 @@ urlpatterns = patterns('',
 
                        url(r'^admin/', include(admin.site.urls)),
                        url(r'^$', home, name="home"),
-                       url(r'^accounts/', include('userena.urls')),
+                       url(r'^accounts/', include('allauth.urls')),
+                       # url(r'^accounts/', include('userena.urls')),
                        # url(r'^', include(
                        #     'userprofiles.urls', namespace="userprofiles")),
                        )

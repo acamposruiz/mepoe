@@ -1,4 +1,5 @@
 {% load static from staticfiles %}
+{% load url from future %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +10,7 @@
     <meta name="description" content="">
     <link rel="icon" href="{% static "favicon.ico" %}">
 
-    <title>{% block title %}Mepoe{% endblock title %}</title>
+    <title>{% block head_title %}Mepoe{% endblock head_title %}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
@@ -30,12 +31,26 @@
   </head>
 
   <body>
+    {% block body %}
+    {% if messages %}
+    <div>
+      <strong>Messages:</strong>
+      <ul>
+        {% for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
 
     {% block navigation %}{% endblock navigation %}
 
     <div class="container">
         {% block content %}{% endblock content %}
     </div><!-- /.container -->
+    {% endblock body %}
+    {% block extra_body %}
+    {% endblock %}
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

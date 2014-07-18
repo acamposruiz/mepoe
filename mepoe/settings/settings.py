@@ -26,6 +26,8 @@ SECRET_KEY = '@frpw&7+9160zzhx*4r=5n-%d+-v&n-765-k(x4h!)8$3p_ei5'
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
+SITE_ID = 1
+
 # Application definition
 
 DJANGO_APPS = (
@@ -35,6 +37,7 @@ DJANGO_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 )
 
 THIRD_PARTY_APPS = (
@@ -43,17 +46,22 @@ THIRD_PARTY_APPS = (
     # 'bootstrapform',
     'bootstrap3',
     'easy_thumbnails',
-    'guardian',
+    # 'guardian',
     'werkzeug',
     'django_extensions',
     'debug_toolbar',
-    'userena',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.twitter',
+    # 'userena',
     # 'social.apps.django_app.default',
     # 'djrill',
 )
 
 LOCAL_APPS = (
-    'accounts',
+    # 'accounts',
     # 'userprof',
     # 'poems',
     # 'tags',
@@ -70,6 +78,19 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'userena.middleware.UserenaLocaleMiddleware',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    "django.core.context_processors.request",
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
 )
 
 ROOT_URLCONF = 'mepoe.urls'
@@ -97,6 +118,7 @@ USE_TZ = True
 
 TEMPLATE_DIRS = (
     'templates',
+    'templates/allauth',
 )
 
 STATIC_URL = '/static/'
@@ -146,7 +168,6 @@ LOGGING = {
     },
 }
 
-
 # from .thumbnail_settings import *
 #
 
@@ -154,22 +175,24 @@ SOUTH_MIGRATION_MODULES = {
     'easy_thumbnails': 'easy_thumbnails.south_migrations',
 }
 
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+    # 'django.contrib.auth.backends.ModelBackend',
+    # 'userprofiles.backends.EmailBackend',
+)
+
+
+# DJANGO-ALLAUTH
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = False
+ACCOUNT_USERNAME_MIN_LENGTH = 2
+ACCOUNT_USERNAME_BLACKLIST = ['username', 'mepoe', 'password']
+ACCOUNT_PASSWORD_MIN_LENGTH = 6
+
 # MAILGUN
 EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
 MAILGUN_ACCESS_KEY = 'key-0vrsqh9l0ik6d0j43b1-8c3n8wc-e3e3'
 MAILGUN_SERVER_NAME = 'mepoe.com'
-
-AUTHENTICATION_BACKENDS = (
-    'userena.backends.UserenaAuthenticationBackend',
-    'guardian.backends.ObjectPermissionBackend',
-    'django.contrib.auth.backends.ModelBackend',
-    # 'userprofiles.backends.EmailBackend',
-)
-
-ANONYMOUS_USER_ID = -1
-
-AUTH_USER_MODEL = 'accounts.MyProfile'
-
-USERENA_SIGNIN_REDIRECT_URL = '/accounts/%(username)s/'
-LOGIN_URL = '/accounts/signin/'
-LOGOUT_URL = '/accounts/signout/'
