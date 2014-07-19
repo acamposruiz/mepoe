@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% load bootstrap3 %}
+{% load static from staticfiles %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/signin.css" %}">
+{% endblock css %}
+
+{% block title %}Sign in{% endblock title %}
+
+{% block content %}
+    <form class="form-signin" action="" method="post" role="form">
+        {% csrf_token %}
+        <h2 class="form-signin-heading">Please sign in</h2>
+        {% bootstrap_form form layout='inline' %}
+        {% buttons %}
+            <button type="submit" class="btn btn-lg btn-primary btn-block">
+                Sign in
+            </button>
+        {% endbuttons %}
+    </form>
+{% endblock content %}
