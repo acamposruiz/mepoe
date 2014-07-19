@@ -20,6 +20,7 @@
 <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
 <form class="signup form-signin" id="signup_form" method="POST" action="{% url 'account_signup' %}">
+  {% include "form_errors.html" %}
   {% csrf_token %}
   {% bootstrap_form form layout='inline' %}
   {% if redirect_field_value %}
