@@ -13,7 +13,7 @@
       <ul class="nav navbar-nav">
         <li><a href="#">Notifications</a></li>
         <li><a href="#">Explore</a></li>
-        <li><a href="#">Account</a></li>
+        <li><a href="{% url 'userprofiles:profile' %}">Account</a></li>
         {% if user.is_authenticated %}
         <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
         <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
