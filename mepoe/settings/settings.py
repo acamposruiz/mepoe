@@ -66,7 +66,7 @@ LOCAL_APPS = (
     # 'userprof',
     # 'poems',
     # 'tags',
-    # 'userprofiles',
+    'userprofiles',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

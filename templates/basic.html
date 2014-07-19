@@ -38,6 +38,7 @@
     {% block navigation %}{% endblock navigation %}
 
     <div class="container">
+
         {% if messages %}
         <div class="alert alert-success">
           <strong>Messages:</strong>
@@ -50,6 +51,7 @@
           </ul>
         </div>
         {% endif %}
+
         {% block content %}{% endblock content %}
     </div><!-- /.container -->
     {% endblock body %}

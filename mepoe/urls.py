@@ -13,6 +13,6 @@ urlpatterns = patterns('',
                        url(r'^$', home, name="home"),
                        url(r'^accounts/', include('allauth.urls')),
                        # url(r'^accounts/', include('userena.urls')),
-                       # url(r'^', include(
-                       #     'userprofiles.urls', namespace="userprofiles")),
+                       url(r'^accounts/', include(
+                           'userprofiles.urls', namespace="userprofiles")),
                        )
