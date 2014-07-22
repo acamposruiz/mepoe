@@ -198,3 +198,11 @@ ACCOUNT_PASSWORD_MIN_LENGTH = 6
 EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
 MAILGUN_ACCESS_KEY = 'key-0vrsqh9l0ik6d0j43b1-8c3n8wc-e3e3'
 MAILGUN_SERVER_NAME = 'mepoe.com'
+
+
+# EASY THUMBNAILS
+THUMBNAIL_ALIASES = {
+    '': {
+        'avatar': {'size': (50, 50), 'crop': True},
+    },
+}
