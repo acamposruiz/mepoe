@@ -23,4 +23,6 @@ urlpatterns = patterns('',
                        # url(r'^accounts/', include('userena.urls')),
                        url(r'^accounts/', include(
                            'userprofiles.urls', namespace="userprofiles")),
+                       url(r'^', include(
+                           'poems.urls', namespace="poems")),
                        )
