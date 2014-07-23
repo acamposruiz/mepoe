@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
+# import os
 # BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # from unipath import Path
@@ -43,6 +43,7 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     'south',
     'autofixture',
+    'avatar',
     # 'bootstrapform',
     'bootstrap3',
     'easy_thumbnails',
@@ -130,7 +131,7 @@ STATICFILES_DIRS = (
 )
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = 'media'
+MEDIA_ROOT = str(BASE_DIR / 'media')
 
 FORCE_SCRIPT_NAME = '/'
 
@@ -206,3 +207,7 @@ THUMBNAIL_ALIASES = {
         'avatar': {'size': (50, 50), 'crop': True},
     },
 }
+
+# DJANGO-AVATAR
+AVATAR_STORAGE_DIR = 'avatars'
+AVATAR_DEFAULT_URL = 'userprofiles/static/images/avatar_default.png'

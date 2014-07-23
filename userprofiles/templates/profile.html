@@ -5,11 +5,14 @@
 {% load url from future %}
 {% load bootstrap3 %}
 {% load static from staticfiles %}
+{% load avatar_tags %}
 
 {% block head_title %}{{ user.username }}{% endblock %}
 
 {% block content %}
 
 <h1>{{ user.username }}</h1>
+{% avatar user %}
+<a href="{% url 'avatar_change' %}">Change your avatar</a>
 
 {% endblock %}

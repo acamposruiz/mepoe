@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from .views import *
+from settings.settings import MEDIA_ROOT
 
 from django.contrib import admin
 admin.autodiscover()
@@ -12,6 +13,13 @@ urlpatterns = patterns('',
                        url(r'^admin/', include(admin.site.urls)),
                        url(r'^$', home, name="home"),
                        url(r'^accounts/', include('allauth.urls')),
+                       url(r'^avatar/', include('avatar.urls')),
+                       # This is necesary on debug:
+                       url(r'^media/(?P<path>.*)$',
+                           'django.views.static.serve', {
+                           'document_root':
+                           MEDIA_ROOT,
+                           'show_indexes': True}),
                        # url(r'^accounts/', include('userena.urls')),
                        url(r'^accounts/', include(
                            'userprofiles.urls', namespace="userprofiles")),
