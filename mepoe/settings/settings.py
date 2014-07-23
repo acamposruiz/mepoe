@@ -122,6 +122,7 @@ USE_TZ = True
 TEMPLATE_DIRS = (
     'templates',
     'templates/allauth',
+    'templates/avatar',
 )
 
 STATIC_URL = '/static/'
@@ -210,4 +211,7 @@ THUMBNAIL_ALIASES = {
 
 # DJANGO-AVATAR
 AVATAR_STORAGE_DIR = 'avatars'
-AVATAR_DEFAULT_URL = 'userprofiles/static/images/avatar_default.png'
+AVATAR_GRAVATAR_BACKUP = False
+AVATAR_DEFAULT_URL = 'images/avatar_default.png'
+# AVATAR_DEFAULT_URL = str(
+#     BASE_DIR / 'userprofiles/static/images/avatar_default.png')
