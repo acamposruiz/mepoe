@@ -1,10 +1,12 @@
 from django.db import models
 from libs.slughifi import slughifi
+from django.contrib.auth.models import User
 # from easy_thumbnails.fields import ThumbnailerImageField
 
 
 class Poem(models.Model):
 
+    user = models.ForeignKey(User)
     title = models.CharField(max_length=60, blank=True)
     has_title = models.BooleanField(default=False)
     # Num of letters by line, num of lines by strophe, num of strophes
@@ -22,7 +24,7 @@ class Poem(models.Model):
 
     def save(self, *args, **kwargs):
 
-        if not self.title:
+        if self.has_title is False:
             self.title = self.body[:60]
 
         self.slug = slughifi(self.title)
