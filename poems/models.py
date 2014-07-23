@@ -8,8 +8,7 @@ class Poem(models.Model):
 
     user = models.ForeignKey(User)
     title = models.CharField(max_length=60, blank=True)
-    has_title = models.BooleanField(default=False)
-    body = models.TextField()
+    body = models.TextField(max_length=99999)
     slug = models.SlugField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
@@ -26,7 +25,7 @@ class Poem(models.Model):
 
     def save(self, *args, **kwargs):
 
-        if self.has_title is False:
+        if not self.title:
             self.title = self.body[:60]
 
         self.slug = slughifi(self.title)
