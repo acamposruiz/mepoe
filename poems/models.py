@@ -1,6 +1,7 @@
 from django.db import models
 from libs.slughifi import slughifi
 from django.contrib.auth.models import User
+from taggit.managers import TaggableManager
 # from easy_thumbnails.fields import ThumbnailerImageField
 
 
@@ -9,7 +10,8 @@ class Poem(models.Model):
     user = models.ForeignKey(User)
     title = models.CharField(max_length=60, blank=True)
     body = models.TextField(max_length=99999)
-    slug = models.SlugField(max_length=100)
+    slug = models.SlugField(max_length=100, blank=True)
+    tags = TaggableManager()
     created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
     # letters = models.IntegerField()
