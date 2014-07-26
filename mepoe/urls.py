@@ -1,6 +1,12 @@
 from django.conf.urls import patterns, include, url
 from .views import *
 from django.conf import settings
+from haystack.views import SearchView
+try:
+    SearchView.func_globals = SearchView.func_globals
+except:
+    SearchView.func_globals = {}
+
 # from settings.settings import MEDIA_ROOT
 
 from django.contrib import admin
@@ -16,6 +22,7 @@ urlpatterns = patterns('',
                            'userprofiles.urls', namespace="userprofiles")),
                        url(r'^', include(
                            'poems.urls', namespace="poems")),
+                       url(r'^search/', include('haystack.urls')),
                        )
 
 if settings.DEBUG:

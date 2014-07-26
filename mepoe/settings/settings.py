@@ -237,6 +237,7 @@ AVATAR_DEFAULT_URL = 'images/avatar_default.png'
 #     BASE_DIR / 'userprofiles/static/images/avatar_default.png')
 
 # HAYSTACK
+
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE':
