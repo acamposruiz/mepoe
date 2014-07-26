@@ -42,6 +42,8 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'south',
+    'haystack',
+    'pyelasticsearch',
     'autofixture',
     'avatar',
     # 'bootstrapform',
@@ -233,3 +235,13 @@ AVATAR_GRAVATAR_BACKUP = False
 AVATAR_DEFAULT_URL = 'images/avatar_default.png'
 # AVATAR_DEFAULT_URL = str(
 #     BASE_DIR / 'userprofiles/static/images/avatar_default.png')
+
+# HAYSTACK
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE':
+        'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://127.0.0.1:9200/',
+        'INDEX_NAME': 'haystack',
+    },
+}
