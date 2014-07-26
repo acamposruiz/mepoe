@@ -11,11 +11,11 @@ class Migration(SchemaMigration):
         # Adding model 'Poem'
         db.create_table(u'poems_poem', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'], blank=True)),
             ('title', self.gf('django.db.models.fields.CharField')(max_length=60, blank=True)),
             ('body', self.gf('django.db.models.fields.TextField')(max_length=99999)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(max_length=100)),
-            ('created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('slug', self.gf('django.db.models.fields.SlugField')(max_length=100, blank=True)),
+            ('pub_date', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('update', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
         ))
         db.send_create_signal(u'poems', ['Poem'])
@@ -66,12 +66,12 @@ class Migration(SchemaMigration):
         u'poems.poem': {
             'Meta': {'object_name': 'Poem'},
             'body': ('django.db.models.fields.TextField', [], {'max_length': '99999'}),
-            'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '100'}),
+            'pub_date': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '100', 'blank': 'True'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '60', 'blank': 'True'}),
             'update': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']", 'blank': 'True'})
         }
     }
 

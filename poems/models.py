@@ -7,12 +7,12 @@ from taggit.managers import TaggableManager
 
 class Poem(models.Model):
 
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, blank=True)
     title = models.CharField(max_length=60, blank=True)
     body = models.TextField(max_length=99999)
     slug = models.SlugField(max_length=100, blank=True)
     tags = TaggableManager()
-    created = models.DateTimeField(auto_now_add=True)
+    pub_date = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
     # letters = models.IntegerField()
     # lines = models.IntegerField()
