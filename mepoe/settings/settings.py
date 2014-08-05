@@ -71,6 +71,7 @@ LOCAL_APPS = (
     # 'tags',
     'userprofiles',
     'poems',
+    'poemsimport',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -149,6 +150,15 @@ STATIC_ROOT = 'public/static'
 STATICFILES_DIRS = (
     'mepoe/static',
 )
+# Para que se tengan en cuenta los directorios statics de las apps
+# STATICFILES_FINDERS = (
+#     'django.contrib.staticfiles.finders.FileSystemFinder',
+#     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+# )
+
+# Para habilitar el hash en los statics
+# STATICFILES_STORAGE = \
+#     'django.contrib.staticfiles.storage.CachedStaticFiles.Storage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = str(BASE_DIR / 'media')
@@ -237,7 +247,6 @@ AVATAR_DEFAULT_URL = 'images/avatar_default.png'
 #     BASE_DIR / 'userprofiles/static/images/avatar_default.png')
 
 # HAYSTACK
-
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE':
