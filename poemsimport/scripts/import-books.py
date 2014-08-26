@@ -70,14 +70,24 @@ def files2database():
         try:
             dom = parse(EXPORT_DIR + item.name)
             for h in dom.getElementsByTagName('h3'):
-                title = h.firstChild.data
+                try:
+                    title = h.firstChild.data
+                except Exception, e:
+                    title = None
             for v in dom.getElementsByTagName('p'):
-                body += v.firstChild.data + '/'
+                try:
+                    if len(v.firstChild.data) > 2:
+                        body += v.firstChild.data + '/'
+                    else:
+                        body += '*'
+                except Exception, e:
+                    body += '*'
             if len(body) > 2:
                 user = User.objects.order_by('?')[0]
                 poem = Poem(
-                    user=user, title=title, author='Rubén Darío',
-                    book='Azul...', body=body)
+                    user=user, title=title, author='Pablo Neruda',
+                    book='Veinte Poemas de Amor y Una Cancion Desesperada',
+                    body=body)
                 poem.save()
         except Exception, e:
             pass

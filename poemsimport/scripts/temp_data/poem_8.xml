@@ -2,16 +2,46 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" epub:prefix="z3998: http://www.daisy.org/z3998/2012/vocab/structure/#" lang="en" xml:lang="en">
   <head/>
-  <body><p class="ePUBmarca"><span><img alt="ePUB: eBooks con estilo" src="../Images/ePUBlogo.png"/></span></p>&#13;
-&#13;
-  <p class="ePUBautor"><code class="sans">Rubén Darío</code></p>&#13;
-&#13;
-  <h1 class="ePUBtitulo" id="heading_id_2"><code class="sans">Azul...</code></h1>&#13;
-&#13;
-  <p class="ePUBv"><code class="sans">ePUB v1.1</code></p>&#13;
-&#13;
-  <p class="ePUBfirma"><strong class="sans">Noonesun</strong> <code class="ePUBfecha sans">01.01.12</code></p>&#13;
-&#13;
-  <p class="ePUBgratis"><span><img alt="más libros en epubgratis.me" src="../Images/epubgratis.png"/></span></p>&#13;
+  <body><div class="cita centrado">
+    <h3 class="capitulo" id="sigil_toc_id_4"><span>Poema 2</span></h3>
+
+    <p>En su llama mortal la luz te envuelve.</p>
+
+    <p>Absorta, pálida doliente, así situada</p>
+
+    <p>contra las viejas hélices del crepúsculo</p>
+
+    <p>que en torno a ti da vueltas.</p>
+
+    <p class="salto25">Muda, mi amiga,</p>
+
+    <p>sola en lo solitario de esta hora de muertes</p>
+
+    <p>y llena de las vidas del fuego,</p>
+
+    <p>pura heredera del día destruido.</p>
+
+    <p class="salto25">Del sol cae un racimo en tu vestido oscuro.</p>
+
+    <p>De la noche las grandes raíces</p>
+
+    <p>crecen de súbito desde tu alma,</p>
+
+    <p>y a lo exterior regresan las cosas en ti ocultas.</p>
+
+    <p>de modo que un pueblo pálido y azul</p>
+
+    <p>de ti recién nacido se alimenta.</p>
+
+    <p class="salto25">Oh grandiosa y fecunda y magnética esclava</p>
+
+    <p>círculo que en negro y dorado sucede:</p>
+
+    <p>erguida, trata y logra una creación tan viva</p>
+
+    <p>que sucumben sus flores, y llena es de tristeza.</p>
+  </div>
+
+  <div class="cita centrado"/>
 </body>
 </html>

@@ -30,7 +30,7 @@ class Poem(models.Model):
     def save(self, *args, **kwargs):
 
         if not self.title:
-            self.title = self.body[:60]
+            self.title = self.body[:(self.body.index('/') or 60)].strip(',.:;')
 
         self.slug = slughifi(self.title)
         super(Poem, self).save(*args, **kwargs)
