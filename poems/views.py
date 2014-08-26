@@ -21,8 +21,8 @@ class PoemDelete(DeleteView):
 
 
 class PoemList(ListView):
-    queryset = Poem.objects.all().order_by('-created')
-    # model = Poem
+    model = Poem
+    queryset = Poem.objects.all().order_by('-pub_date')
 
 
 class PoemDetail(DetailView):
