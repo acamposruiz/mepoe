@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import sys
 BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = range(8)
 
@@ -28,13 +29,15 @@ from xml.dom.minidom import parse
 from ebooklib import epub
 from pathlib import Path
 import shutil
+from poems.models import Poem
+from django.contrib.auth.models import User
 
 poem_dir = Path('poemsimport/scripts/books/')
 EXPORT_DIR = 'poemsimport/scripts/temp_data/'
 XML_EXPORT_PATRON = EXPORT_DIR + "poem_%s.xml"
 
 
-def run():
+def epub2files():
     # Refres temp directory
     shutil.rmtree("poemsimport/scripts/temp_data")
     Path.mkdir(Path("poemsimport/scripts/temp_data"))
@@ -58,3 +61,32 @@ def run():
                  BOOK_NAME, GREEN)
     except:
         printout("ERROR: Wrong file name!!!", RED)
+
+
+def files2database():
+    print 'Exported files:'
+    for item in list(Path(EXPORT_DIR).glob('*.xml')):
+        body = ''
+        try:
+            dom = parse(EXPORT_DIR + item.name)
+            for h in dom.getElementsByTagName('h3'):
+                title = h.firstChild.data
+            for v in dom.getElementsByTagName('p'):
+                body += v.firstChild.data + '/'
+            if len(body) > 2:
+                user = User.objects.order_by('?')[0]
+                poem = Poem(
+                    user=user, title=title, author='Rubén Darío',
+                    book='Azul...', body=body)
+                poem.save()
+        except Exception, e:
+            pass
+        else:
+            pass
+        finally:
+            pass
+
+
+def run():
+    epub2files()
+    files2database()

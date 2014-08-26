@@ -9,6 +9,8 @@ class Poem(models.Model):
 
     user = models.ForeignKey(User, blank=True)
     title = models.CharField(max_length=60, blank=True)
+    author = models.CharField(max_length=60, blank=True)
+    book = models.CharField(max_length=60, blank=True)
     body = models.TextField(max_length=99999)
     slug = models.SlugField(max_length=100, blank=True)
     tags = TaggableManager()
