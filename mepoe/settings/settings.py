@@ -72,6 +72,7 @@ LOCAL_APPS = (
     'userprofiles',
     'poems',
     'poemsimport',
+    'randomusers',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
