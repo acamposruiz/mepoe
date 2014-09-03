@@ -2,42 +2,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" epub:prefix="z3998: http://www.daisy.org/z3998/2012/vocab/structure/#" lang="en" xml:lang="en">
   <head/>
-  <body><h3 class="capitulo" id="sigil_toc_id_3"><span>Poema 1</span></h3>
-
-  <div class="cita centrado">
-    <p>Cuerpo de mujer, blancas colinas, muslos blancos,</p>
-
-    <p>te pareces al mundo en tu actitud de entrega.</p>
-
-    <p>Mi cuerpo de labriego salvaje te socava</p>
-
-    <p>y hace saltar el hijo del fondo de la tierra.</p>
-
-    <p class="salto25">Fui solo como un túnel. De mí huían los pájaros</p>
-
-    <p>y en mí la noche entraba su invasión poderosa.</p>
-
-    <p>Para sobrevivirme te forjé como un arma,</p>
-
-    <p>como una flecha en mi arco, como una piedra en mi honda.</p>
-
-    <p class="salto25">Pero cae la hora de la venganza, y te amo.</p>
-
-    <p>Cuerpo de piel, de musgo, de leche ávida y firme.</p>
-
-    <p>Ah los vasos del pecho! Ah los ojos de ausencia!</p>
-
-    <p>Ah las rosas del pubis! Ah tu voz lenta y triste!</p>
-
-    <p class="salto25">Cuerpo de mujer mía, persistirá en tu gracia.</p>
-
-    <p>Mi sed, mi ansia sin límite, mi camino indeciso!</p>
-
-    <p>Oscuros cauces donde la sed eterna sigue,</p>
-
-    <p>y la fatiga sigue, y el dolor infinito.</p>
-  </div>
-
-  <div class="cita centrado"/>
+  <body><p> </p><!-- se usa el &nbsp; para evitar un bug de iBooks (iPad/iPhone/iPod) -->&#13;
+&#13;
+  <p class="sinopsis">AZUL... es una compilación de los escritos que Darío había realizado para La Epoca de Santiago de Chile durante los años 1886 al 1888. El libro se compone de dos secciones. La primera, CUENTOS EN PROSA, contiene dos partes en si: historietas no relacionadas, en las que se destaca la nueva tendencia con gran claridad, y EN CHILE, donde “el poeta” narra sus experiencias durante su estancia en Chile. La segunda parte EL AÑO LÍRICO, se compone de exquisitas poesías que aunque aun románticas, se les notan las inquietudes innovadoras.</p>&#13;
 </body>
 </html>

@@ -16,6 +16,7 @@ class Poem(models.Model):
     tags = TaggableManager()
     pub_date = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
+    image = models.ImageField(upload_to='image_poems', blank=True, null=True)
     # letters = models.IntegerField()
     # lines = models.IntegerField()
     # strophes = models.IntegerField()

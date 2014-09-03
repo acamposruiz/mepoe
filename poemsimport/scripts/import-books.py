@@ -83,11 +83,43 @@ def files2database():
                 except Exception, e:
                     body += '*'
             if len(body) > 2:
+                import random
                 user = User.objects.order_by('?')[0]
+                # Add avatar to user
+                image_type = random.choice((
+                    'abstract', 'animals', 'business', 'cats', 'city', 'food',
+                    'nightlife', 'fashion', 'people', 'nature', 'sports',
+                    'technics', 'transport'))
+                image_url = 'http://lorempixel.com/900/480/abstract/'
+                import requests
+                import tempfile
+                from django.core import files
+
+                # Steam the image from the url
+                request = requests.get(image_url, stream=True)
+
+                # Create a temporary file
+                lf = tempfile.NamedTemporaryFile(
+                    suffix='.jpg',
+                    prefix=title)
+
+                # import ipdb
+                # ipdb.set_trace()
+
+                # Read the streamed image in sections
+                for block in request.iter_content(1024 * 8):
+
+                    # If no more file then stop
+                    if not block:
+                        break
+
+                    # Write image block to temporary file
+                    lf.write(block)
+
                 poem = Poem(
                     user=user, title=title, author='Pablo Neruda',
                     book='Veinte Poemas de Amor y Una Cancion Desesperada',
-                    body=body)
+                    body=body, image=files.File(lf))
                 poem.save()
         except Exception, e:
             pass
