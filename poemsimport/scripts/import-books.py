@@ -90,7 +90,7 @@ def files2database():
                     'abstract', 'animals', 'business', 'cats', 'city', 'food',
                     'nightlife', 'fashion', 'people', 'nature', 'sports',
                     'technics', 'transport'))
-                image_url = 'http://lorempixel.com/900/480/abstract/'
+                image_url = "http://lorempixel.com/900/480/%s/" % image_type
                 import requests
                 import tempfile
                 from django.core import files
@@ -117,8 +117,8 @@ def files2database():
                     lf.write(block)
 
                 poem = Poem(
-                    user=user, title=title, author='Pablo Neruda',
-                    book='Veinte Poemas de Amor y Una Cancion Desesperada',
+                    user=user, title=title, author='Gustavo Adolfo Becquer',
+                    book='Rimas',
                     body=body, image=files.File(lf))
                 poem.save()
         except Exception, e:
