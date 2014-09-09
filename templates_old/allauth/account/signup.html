@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% load i18n %}
+{% load account %}
+{% load url from future %}
+{% load bootstrap3 %}
+{% load static from staticfiles %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/signin_mepoe.css" %}">
+{% endblock css %}
+
+
+{% block content %}
+
+<h1>{% trans "Sign Up" %}</h1>
+
+<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+<form class="signup form-signin" id="signup_form" method="POST" action="{% url 'account_signup' %}">
+  {% include "form_errors.html" %}
+  {% csrf_token %}
+  {% bootstrap_form form layout='inline' %}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  {% buttons %}
+      <button type="submit" class="primaryAction btn btn-lg btn-primary btn-block">
+          {% trans "Sign Up" %} &raquo;
+      </button>
+  {% endbuttons %}
+</form>
+
+{% endblock %}
+
+

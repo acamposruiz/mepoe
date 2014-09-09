@@ -66,14 +66,20 @@ def epub2files():
 def files2database():
     print 'Exported files:'
     for item in list(Path(EXPORT_DIR).glob('*.xml')):
+        printout('\n' + item.name)
         body = ''
         try:
             dom = parse(EXPORT_DIR + item.name)
+            # import ipdb
+            # ipdb.set_trace()
             for h in dom.getElementsByTagName('h3'):
                 try:
                     title = h.firstChild.data
                 except Exception, e:
-                    title = None
+                    try:
+                        title = h.firstChild.firstChild.data
+                    except Exception, e:
+                        title = None
             for v in dom.getElementsByTagName('p'):
                 try:
                     if len(v.firstChild.data) > 2:
@@ -103,9 +109,6 @@ def files2database():
                     suffix='.jpg',
                     prefix=title)
 
-                # import ipdb
-                # ipdb.set_trace()
-
                 # Read the streamed image in sections
                 for block in request.iter_content(1024 * 8):
 
@@ -117,10 +120,11 @@ def files2database():
                     lf.write(block)
 
                 poem = Poem(
-                    user=user, title=title, author='Gustavo Adolfo Becquer',
-                    book='Rimas',
+                    user=user, title=title, author='Pablo Neruda',
+                    book='Veinte Poemas de Amor y Una Cancion Desesperada',
                     body=body, image=files.File(lf))
                 poem.save()
+                printout(' ---> Poem ' + title + ' saved.')
         except Exception, e:
             pass
         else:

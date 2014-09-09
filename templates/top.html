@@ -1,0 +1,68 @@
+{% load static from staticfiles %}
+<section id="top">
+    <header id="home-top" class="nav-top nav-fixed headroom headroom--not-top headroom--unpinned">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-xs-4">
+                    <h1 id="header-logo" class="image">
+                        <a href="{% url 'home' %}">
+                        <img src="{% static "img/ui2/logo.png" %}">
+                        </a>
+                    </h1>
+                    {% comment %}
+                    <div>Icons made by Situ Herrera from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>         is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+
+                    {% endcomment %}
+                </div>
+                <div class="col-md-8 col-xs-8">
+                    <nav id="top-nav">
+                        <ul class="nav-list transistion">
+                            <li><a href="#">Notifications</a></li>
+                            <li><a href="#">Explore</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'userprofiles:profile' %}">Account</a></li>
+                            <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
+                            <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+                            <li><a href="{% url 'poems:poem_add' %}">Add Poem</a></li>
+                            {% else %}
+                            <li><a href="{% url 'account_login' %}">Sign In</a></li>
+                            <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+                <!-- 12 -->
+            </div>
+            <!-- / row -->
+        </div>
+        <!--/ container -->
+    </header>
+    <div class="masthead-wrap">
+        <div id="title" class="work-head">
+            <div class="container">
+                <div class="transistion cloud left-cloud-work"></div>
+                <div class="transistion cloud right-cloud-work"></div>
+                <div class="transistion flag flag-left"></div>
+                <div class="transistion flag flag-right"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="head-slider" class="transistion">
+                            <div class="slide-contents">
+                                <div class="slide">
+                                    <h2 class="work">
+                                        <figure class="">
+                                            <img src="{% static "img/ui2/title_head.png" %}">
+                                        </figure>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /col 24 -->
+                </div>
+                <!-- /row -->
+            </div>
+        </div>
+    </div>
+</section>
+

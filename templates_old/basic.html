@@ -1,0 +1,68 @@
+{% load static from staticfiles %}
+{% load url from future %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <link rel="icon" href="{% static "favicon.ico" %}">
+
+    <title>{% block head_title %}Mepoe{% endblock head_title %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "bootstrap/css/bootstrap-theme.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/mepoe.css" %}" rel="stylesheet">
+    <link href="{% static "css/signin_mepoe.css" %}" rel="stylesheet" >
+    {% block css %}{% endblock css %}
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    {% block body %}
+
+
+    {% block navigation %}{% endblock navigation %}
+
+    <div class="container">
+
+        {% if messages %}
+        <div class="alert alert-success alert-dismissable alert-link">
+            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+            <strong>Messages:</strong>
+            <ul class="list-unstyled">
+                {% for message in messages %}
+                <li>
+                    {{message}}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+
+        {% block content %}{% endblock content %}
+    </div><!-- /.container -->
+    {% endblock body %}
+    {% block extra_body %}
+    {% endblock %}
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+    {% block js %}{% endblock js %}
+  </body>
+</html>

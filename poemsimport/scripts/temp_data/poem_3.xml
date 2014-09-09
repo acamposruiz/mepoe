@@ -2,8 +2,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" epub:prefix="z3998: http://www.daisy.org/z3998/2012/vocab/structure/#" lang="en" xml:lang="en">
   <head/>
-  <body><h1 class="sgc-1 sigilNotInTOC">Rimas<br/></h1>&#13;
-&#13;
-  <h2 class="sgc-2 sigilNotInTOC">Gustavo Adolfo Bécquer </h2>&#13;
+  <body><p class="ePUBautor"><code class="sans">Pablo Neruda</code></p>
+
+  <h1 class="ePUBtitulo" id="sigil_toc_id_2"><code class="sans">Veinte Poemas de Amor y Una Canción Desesperada</code></h1>
+
+  <p class="ePUBv"><code class="sans">eBook v1.0</code></p>
+
+  <p class="ePUBfirma"><strong class="sans">Wichofles</strong> <code class="ePUBfecha sans">13.01.14</code></p>
 </body>
 </html>

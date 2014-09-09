@@ -22,7 +22,7 @@ class PoemDelete(DeleteView):
 
 class PoemList(ListView):
     model = Poem
-    queryset = Poem.objects.all().order_by('-pub_date')
+    queryset = Poem.objects.all().order_by('-pub_date')[0:3]
 
 
 class PoemDetail(DetailView):
