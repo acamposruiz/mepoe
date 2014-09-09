@@ -7,10 +7,8 @@
                     <figure>
                         <img src="{% static "img/content/home/work/pencil.svg" %}">
                     </figure>
-                    <h3>What I've been up to.</h3>
-                    <p class="info">
-                        Here's a selection of some recent work. For more up to the minute work you can visit me on <a class="new-window" href="http://dribbble.com/seanehalpin">dribbble</a> or <a class="new-window" href="http://twitter.com/seanehalpin">twitter</a>.
-                    </p>
+                    <h3>{{ content.text.head.title }}</h3>
+                    <p class="info"> {{ content.text.head.body }} </p>
                 </article>
             </div>
         </div>
