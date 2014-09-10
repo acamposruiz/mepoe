@@ -15,10 +15,11 @@
 
 {% block content %}
 
-<h1>{% trans "Confirm E-mail Address" %}</h1>
-
 {% user_display email_address.user as user_display %}
 
-<p>{% blocktrans with email_address.email as email %}You have confirmed that <a href="mailto:{{email}}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
+{% autoescape off %}
+{% trans '<p>You have confirmed that <a href="mailto:'|add:email_address.email|add:'">'|add:email_address.email|add:'</a> is an e-mail address for user '|add:user_display|add:'.</p>' as body %}
+{% include "head.html" with title="Confirm E-mail Address" body=body %}
+{% endautoescape %}
 
 {% endblock %}

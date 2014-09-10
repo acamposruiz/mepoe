@@ -15,12 +15,11 @@
 
 {% block content %}
 
-{% trans '<p>Already have an account? Then please <a href="' as tr1 %}
-{% trans '">sign in</a>.</p>' as tr2 %}
 
-{% with tr1|add:login_url|add:tr2 as body %}
+{% autoescape off %}
+{% trans '<p>Already have an account? Then please <a href="'|add:login_url|add:'">sign in</a>.</p>' as body %}
 {% include "head.html" with title="Sign Up" body=body %}
-{% endwith %}
+{% endautoescape %}
 
 <form class="signup form-signin" id="signup_form" method="POST" action="{% url 'account_signup' %}">
   {% include "form_errors.html" %}
