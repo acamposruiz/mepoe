@@ -15,9 +15,12 @@
 
 {% block content %}
 
-<h1>{% trans "Sign Up" %}</h1>
+{% trans '<p>Already have an account? Then please <a href="' as tr1 %}
+{% trans '">sign in</a>.</p>' as tr2 %}
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+{% with tr1|add:login_url|add:tr2 as body %}
+{% include "head.html" with title="Sign Up" body=body %}
+{% endwith %}
 
 <form class="signup form-signin" id="signup_form" method="POST" action="{% url 'account_signup' %}">
   {% include "form_errors.html" %}

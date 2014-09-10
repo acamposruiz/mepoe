@@ -1,14 +1,17 @@
 {% load static from staticfiles %}
+{% load i18n %}
 <section id="hello">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <article>
+                {% if img %}
                     <figure>
-                        <img src="{% static "img/content/home/work/pencil.svg" %}">
+                        <img src="{% static img %}">
                     </figure>
-                    <h3>{{ content.text.head.title }}</h3>
-                    <p class="info"> {{ content.text.head.body }} </p>
+                {% endif %}
+                    <h3>{% trans title %}</h3>
+                    {% autoescape off %}{{ body }}{% endautoescape %}
                 </article>
             </div>
         </div>

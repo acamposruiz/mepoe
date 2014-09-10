@@ -5,7 +5,7 @@
 {% endblock top %}
 
 {% block head %}
-  {% include "head.html" %}
+  {% include "head.html" with img=content.text.head.img title=content.text.head.title body=content.text.head.body %}
 {% endblock head %}
 
 {# {% block help %} {% include "help.html" %} {% endblock help %} #}

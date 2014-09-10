@@ -14,29 +14,38 @@
 
 {% block content %}
 
-<h1>{% trans "Sign In" %}</h1>
+<section id="hello">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <article>
+                    <h3>{% trans "Sign In" %}</h3>
+                    {% if socialaccount.providers  %}
+                    <p class="info">{% blocktrans with site.name as site_name %}Please sign in with one
+                    of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+                    for a {{site_name}} account and sign in below:{% endblocktrans %}</p>
 
-{% if socialaccount.providers  %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-for a {{site_name}} account and sign in below:{% endblocktrans %}</p>
+                    <div class="socialaccount_ballot">
 
-<div class="socialaccount_ballot">
+                      <ul class="socialaccount_providers">
+                        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                      </ul>
 
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
+                      <div class="login-or">{% trans 'or' %}</div>
 
-  <div class="login-or">{% trans 'or' %}</div>
+                    </div>
 
-</div>
+                    {% include "socialaccount/snippets/login_extra.html" %}
 
-{% include "socialaccount/snippets/login_extra.html" %}
-
-{% else %}
-<p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-{% endif %}
+                    {% else %}
+                    <p class="info">{% blocktrans %}If you have not created an account yet, then please
+                    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+                    {% endif %}
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
 
 <form class="login form-signin" method="POST" action="{% url 'account_login' %}">
   {% csrf_token %}

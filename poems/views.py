@@ -33,8 +33,9 @@ class PoemList(ListView):
             context['content']['text'] = {
                 'head': {
                     'title': 'Last Works',
-                    'body':
-                    'Collaborative production of poetry and short stories'
+                    'body': '<p class="info">\
+                    Collaborative production of poetry and short stories</p>',
+                    'img': 'img/content/home/work/pencil.svg'
                 }}
             return context
 
