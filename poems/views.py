@@ -37,7 +37,8 @@ class PoemDelete(DeleteView):
 class PoemList(ListView):
     model = Poem
     paginate_by = 8
-    queryset = Poem.objects.all().order_by('-pub_date')[0:8]
+    page_kwarg = 'page'
+    queryset = Poem.objects.all().order_by('-pub_date')
 
     def get_context_data(self, **kwargs):
             # Call the base implementation first to get a context

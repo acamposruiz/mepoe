@@ -48,19 +48,22 @@
         <h1>{% trans "No poems yet" %}</h1>
     {% endfor %}
     {% if is_paginated %}
+    <section class="pagination-section"> <div class="container"> <div class="row"> <div class="col-md-12">
         <div class="pagination">
             <span class="page-links">
                 {% if page_obj.has_previous %}
-                    <a href="/poems?page={{ page_obj.previous_page_number }}">previous</a>
+                    <a class="glyphicon glyphicon-chevron-left" href="{% url 'poems:poem_list' %}?page={{ page_obj.previous_page_number }}"></a>
+                {% else %}
+                    <span class="glyphicon glyphicon-chevron-left"></span>
                 {% endif %}
-                <span class="page-current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                </span>
                 {% if page_obj.has_next %}
-                    <a href="/poems?page={{ page_obj.next_page_number }}">next</a>
+                    <a class="glyphicon glyphicon-chevron-right" href="{% url 'poems:poem_list' %}?page={{ page_obj.next_page_number }}"></a>
+                {% else %}
+                   <span class="glyphicon glyphicon-chevron-right"></span>
                 {% endif %}
             </span>
         </div>
+    </div> </div> </section>
     {% endif %}
 {% endblock %}
 

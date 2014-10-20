@@ -13,7 +13,7 @@ body
     background-color: color-bg-b
     padding-bottom 40px
     & > section
-        &:last-of-type
+        &:last-of-type:not(.pagination-section)
             padding-bottom 20px
 
 .nav-list li a
@@ -98,3 +98,25 @@ article
         //     .poem-text
         //     .show-more
         //         .btn
+
+.pagination-section
+    .pagination
+        display table
+        margin auto
+        .page-links
+            a, span
+                border-radius: 45px
+                background-color color-primary-5
+                font-size: 26px
+                margin: 13px
+                padding: 20px
+                color white
+                &:hover
+                    text-decoration none
+                    background-color color-primary-2
+        .page-links span
+            opacity 0.2
+            background-color grey
+            &:hover
+                background-color grey
+
