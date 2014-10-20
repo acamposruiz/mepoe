@@ -12,34 +12,17 @@
 <head>
     <title>{% block head_title %}Mepoe{% endblock head_title %}</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
     <meta name="description" content="{% block head_description %}Collaborative production of poetry and short stories{% endblock head_description %}">
     <meta name="keywords" content="">
     <meta name="robots" content="index, follow">
-
-
     <meta name="msapplication-TileImage" content="">
     <meta name="msapplication-TileColor" content="#E0EBE8">
 
-    <link rel="icon" href="{% static "favicon.ico" %}">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="">
-    <link rel="apple-touch-icon-precomposed" href="">
-
-    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
-
-    <style type="text/css">.tk-brandon-grotesque{font-family:"brandon-grotesque",sans-serif;}.tk-adobe-garamond-pro{font-family:"adobe-garamond-pro",sans-serif;}</style>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-
-    <link href="{% static "css/inline.css" %}" rel="stylesheet">
-    <link href="{% static "css/mepoe.css" %}" rel="stylesheet">
-    <link href="{% static "css/signin_mepoe.css" %}" rel="stylesheet" >
-    {% block css %}{% endblock css %}
+    {% block css %} {% include 'css.html' %} {% endblock %}
+    {% block css_extra %}{% endblock %}
 
     <script src="{% static "js/respond.min.js" %}"></script>
     <script src="{% static "js/modernizr.js" %}"></script>
@@ -69,12 +52,8 @@
     {% block extra_body %} {% endblock %}
     {% block help %}{% endblock help %}
     {% block footer %}{% endblock footer %}
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
-    <script src="{% static "js/min/app.js" %}"></script>
-    <script src="{% static "js/min/init.min.js" %}"></script>
-    {% block js %}{% endblock js %}
+    {% block js %} {% include 'js.html' %} {% endblock %}
+    {% block js_extra %}{% endblock %}
 
 
 

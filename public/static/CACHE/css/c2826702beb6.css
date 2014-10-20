@@ -1,0 +1,116 @@
+color-primary #AAD7CD,
+color-primary-a #DCBAA8,
+color-primary-b #4FB8A1,
+color-primary-c #F1A53C,
+color-primary-d #AEB2B1,
+color-primary-e #1E8F75,
+color-primary-f #046549,
+color-secondary #000,
+color-secondary-80 #000,
+color-secondary-60 #000,
+color-secondary-40 #000,
+color-secondary-20 #000,
+color-secondary-10 #000,
+color-default #000,
+color-default-80 #000,
+color-default-60 #000,
+color-default-40 #000,
+color-default-20 #000,
+color-default-10 #000,
+color-altern-a-dark #000,
+color-altern-a #000,
+color-altern-a-50 #000,
+color-altern-a-10 #000,
+color-altern-b-dark #000,
+color-altern-b #000,
+color-altern-b-50 #000,
+color-altern-b-10 #000,
+color-altern-c-dark #000,
+color-altern-c #000,
+color-altern-c-50 #000,
+color-altern-c-10 #000,
+color-altern-d-dark #000,
+color-altern-d #000,
+color-altern-d-50 #000,
+color-altern-d-10 #000,
+color-altern-e-dark #000,
+color-altern-e #000,
+color-altern-e-50 #000,
+color-altern-e-10 #000,
+color-text #000,
+color-bg-dark-altern #000,
+color-bg-dark #000,
+color-bg #F3F6F5,
+fon-xs() {
+  font-size: 10px;
+}
+body {
+  padding-top: 80px;
+  background-color: #eee;
+  padding-bottom: 40px;
+}
+body > section:last-of-type {
+  padding-bottom: 20px;
+}
+.nav-list li a {
+  font-size: 18px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+.tk-brandon-grotesque {
+  font-family: "brandon-grotesque", sans-serif;
+}
+.tk-adobe-garamond-pro {
+  font-family: "adobe-garamond-pro", sans-serif;
+}
+#header-logo {
+  background-color: #fff;
+}
+#top {
+  padding-top: 95px;
+}
+footer .footer-list-footer a {
+  font-size: 18px;
+  color: color-primary-b;
+}
+.form-signin {
+  margin: 0 auto;
+  max-width: 330px;
+  padding: 15px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  box-sizing: border-box;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  position: relative;
+}
+.form-signin:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: -1px;
+}
+.form-signin input[type="password"] {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin-bottom: 10px;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.container > .alert {
+  margin-top: 30px;
+}
+.avatar-change form input[type="file"] {
+  display: inline;
+}
+

@@ -1,0 +1,23 @@
+{% load static from staticfiles %}
+{% load static compress %}
+
+<link rel="icon" href="{% static "favicon.ico" %}">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="">
+<link rel="apple-touch-icon-precomposed" href="">
+
+<link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+
+<style type="text/css">.tk-brandon-grotesque{font-family:"brandon-grotesque",sans-serif;}.tk-adobe-garamond-pro{font-family:"adobe-garamond-pro",sans-serif;}</style>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+{# <link href="{% static "css/inline.css" %}" rel="stylesheet"> #}
+{# <link href="{% static "css/mepoe.css" %}" rel="stylesheet"> #}
+{# <link href="{% static "css/signin_mepoe.css" %}" rel="stylesheet" > #}
+
+{% compress css %}
+    {# <link type="text/stylus" href="{% static "css/inline.styl" %}" rel="stylesheet"> #}
+    <link type="text/stylus" href="{% static "css/mepoe.styl" %}" rel="stylesheet">
+    {# <link type="text/stylus" href="{% static "css/signin_mepoe.styl" %}" rel="stylesheet"> #}
+{% endcompress %}

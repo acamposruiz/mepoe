@@ -8,32 +8,34 @@
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
-{% block css %}
+{% block css_extra %}
     <link rel="stylesheet" href="{% static "css/signin_mepoe.css" %}">
-{% endblock css %}
+{% endblock %}
 
 
 {% block content %}
 
+<section id="signup" class="signup"> <div class="container"> <div class="row"> <div class="col-md-12"> <article class="text-center">
+    {% autoescape off %}
+    {% trans '<p>Already have an account? Then please <a href="'|add:login_url|add:'">sign in</a>.</p>' as body %}
+    {% include "head.html" with title="Sign Up" body=body %}
+    {% endautoescape %}
 
-{% autoescape off %}
-{% trans '<p>Already have an account? Then please <a href="'|add:login_url|add:'">sign in</a>.</p>' as body %}
-{% include "head.html" with title="Sign Up" body=body %}
-{% endautoescape %}
+    <form class="signup form-signin" id="signup_form" method="POST" action="{% url 'account_signup' %}">
+    {% include "form_errors.html" %}
+    {% csrf_token %}
+    {% bootstrap_form form layout='inline' %}
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    {% buttons %}
+        <button type="submit" class="primaryAction btn btn-lg btn-primary btn-block">
+            {% trans "Sign Up" %} &raquo;
+        </button>
+    {% endbuttons %}
+    </form>
+</article></div></div></div></section>
 
-<form class="signup form-signin" id="signup_form" method="POST" action="{% url 'account_signup' %}">
-  {% include "form_errors.html" %}
-  {% csrf_token %}
-  {% bootstrap_form form layout='inline' %}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  {% buttons %}
-      <button type="submit" class="primaryAction btn btn-lg btn-primary btn-block">
-          {% trans "Sign Up" %} &raquo;
-      </button>
-  {% endbuttons %}
-</form>
 
 {% endblock %}
 

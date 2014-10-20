@@ -57,6 +57,7 @@ THIRD_PARTY_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     'taggit',
+    'compressor',
     # 'request',
     # 'allauth.socialaccount.providers.facebook',
     # 'allauth.socialaccount.providers.twitter',
@@ -256,3 +257,29 @@ HAYSTACK_CONNECTIONS = {
         'INDEX_NAME': 'haystack',
     },
 }
+
+# COMPRESSOR
+# COMPRESS_PRECOMPILERS = (
+#     ('text/less', 'lessc --include-path="' + os.path.join(SITE_ROOT, 'ebury_theme_bos/static/less') + '" {infile} {outfile}'),
+# )
+
+COMPRESS_PRECOMPILERS = (
+    # ('text/coffeescript', 'coffee --compile --stdio'),
+    # ('text/less', 'lessc {infile} {outfile}'),
+    # ('text/x-sass', 'sass {infile} {outfile}'),
+    # ('text/x-scss', 'sass --scss {infile} {outfile}'),
+    ('text/stylus', 'stylus < {infile} > {outfile}'),
+    # ('text/foobar', 'path.to.MyPrecompilerFilter'),
+)
+
+COMPRESS_ENABLED = True
+# COMPRESS_OUTPUT_DIR = 'compiled'
+
+# # List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)

@@ -2,6 +2,7 @@ from django.db import models
 from libs.slughifi import slughifi
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
+from django.core.urlresolvers import reverse
 # from easy_thumbnails.fields import ThumbnailerImageField
 
 
@@ -28,6 +29,9 @@ class Poem(models.Model):
     def __unicode__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('poem_detail', kwargs={'pk': self.pk})
+
     def save(self, *args, **kwargs):
 
         if not self.title:
@@ -35,3 +39,10 @@ class Poem(models.Model):
 
         self.slug = slughifi(self.title)
         super(Poem, self).save(*args, **kwargs)
+
+    def get_poem(self):
+        return '<p>' + '</p><p>'.join(self.body.split('/')) + '</p>'
+
+    def get_cut_poem(self):
+        return '<p>' + '</p><p>'.join(self.body[:min(300, len(self.body)/2)]
+                                .split('/')) + '</p><p>...</p>'

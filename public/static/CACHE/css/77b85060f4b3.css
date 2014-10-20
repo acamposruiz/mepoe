@@ -1,0 +1,109 @@
+.color-secondary-0 {
+  background-color: #7dcc93;
+}
+.color-secondary-1 {
+  background-color: #f76160;
+}
+.color-secondary-2 {
+  background-color: #31355b;
+}
+.color-secondary-3 {
+  background-color: #f8c687;
+}
+.color-secondary-4 {
+  background-color: #21364b;
+}
+.color-secondary-5 {
+  background-color: #e29470;
+}
+.color-secondary-6 {
+  background-color: #66a7d5;
+}
+.color-secondary-7 {
+  background-color: #fa6d68;
+}
+.color-secondary-8 {
+  background-color: #679895;
+}
+[class*="color-secondary"] {
+  color: #fff;
+}
+body {
+  padding-top: 70px;
+  background-color: #eee;
+  padding-bottom: 40px;
+}
+body > section:last-of-type {
+  padding-bottom: 20px;
+}
+.nav-list li a {
+  font-size: 18px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+.tk-brandon-grotesque {
+  font-family: "brandon-grotesque", sans-serif;
+}
+.tk-adobe-garamond-pro {
+  font-family: "adobe-garamond-pro", sans-serif;
+}
+#header-logo {
+  background-color: #fff;
+}
+header {
+  padding: 0px;
+}
+#top {
+  padding-top: 95px;
+}
+footer .footer-list-footer a {
+  font-size: 18px;
+  color: #4fb8a1;
+}
+.btn-primary {
+  background-color: #1e8f75;
+}
+.form-signin {
+  margin: 0 auto;
+  max-width: 330px;
+  padding: 15px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  box-sizing: border-box;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  position: relative;
+}
+.form-signin:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: -1px;
+}
+.form-signin input[type="password"] {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin-bottom: 10px;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.container > .alert {
+  margin-top: 30px;
+}
+.avatar-change form input[type="file"] {
+  display: inline;
+}
+article.poem {
+  padding-bottom: 40px;
+}
+

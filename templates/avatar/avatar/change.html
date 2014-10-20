@@ -9,30 +9,39 @@
 
 {% block head_title %}{% trans "Django Avatar" %}{% endblock %}
 
-{% block css %}{% endblock css %}
+{% block css_extra %}{% endblock %}
 
 {% block content %}
-    <h4>{% trans "Your current avatar: " %}</h4>
-    {% avatar user %}
-    {% if not avatars %}
-        <p>{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</p>
-    {% else %}
-        <form method="POST" action="{% url 'avatar_change' %}">
-            {% csrf_token %}
-            {% bootstrap_form primary_avatar_form layout='inline' %}
-            {% buttons %}
-            <button type="submit" class="primaryAction btn btn-lg btn-primary">
-                {% trans "Choose new Default" %}
-            </button>
-            {% endbuttons %}
-        </form>
-    {% endif %}
-    <form enctype="multipart/form-data" method="POST" action="{% url 'avatar_add' %}">
-        {% csrf_token %}
-        {% bootstrap_form upload_avatar_form layout='inline' %}
-        <button type="submit" class="primaryAction btn btn-lg btn-primary">
-            {% trans "Upload New Image" %}
-        </button>
-        <a class="btn btn-lg btn-danger" href="{% url 'avatar_delete' %}">Delete your avatar</a>
-    </form>
+<section id="avatar-change" class="avatar-change">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <article class="text-center">
+                    <h3>{% trans "Your current avatar: " %}</h3>
+                    {% avatar user %}
+                    {% if not avatars %}
+                        <p>{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</p>
+                    {% else %}
+                        <form method="POST" action="{% url 'avatar_change' %}">
+                            {% csrf_token %}
+                            {% bootstrap_form primary_avatar_form layout='inline' %}
+                            {% buttons %}
+                            <button type="submit" class="primaryAction btn btn-lg btn-primary">
+                                {% trans "Choose new Default" %}
+                            </button>
+                            {% endbuttons %}
+                        </form>
+                    {% endif %}
+                    <form enctype="multipart/form-data" method="POST" action="{% url 'avatar_add' %}">
+                        {% csrf_token %}
+                        {% bootstrap_form upload_avatar_form layout='inline' %}
+                        <button type="submit" class="primaryAction btn btn-lg btn-primary">
+                            {% trans "Upload New Image" %}
+                        </button>
+                        <a class="btn btn-lg btn-danger" href="{% url 'avatar_delete' %}">Delete your avatar</a>
+                    </form>
+
+    </article></div></div></div>
+</section>
+
 {% endblock %}
