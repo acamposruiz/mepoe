@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% load i18n %}
+{% load account %}
+{% load url from future %}
+{% load bootstrap3 %}
+{% load static from staticfiles %}
+{% load avatar_tags %}
+
+{% block head_title %}{%blocktrans%} Are you sure you want to delete "{{object}}"? {%endblocktrans%} {% endblock %}
+
+
+{% block content %}
+        <section class="work-shots">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <article class="poem">
+                            <section class="text-center">
+                                <form action="" method="post">{% csrf_token %}
+                                    <p> {%blocktrans%} Are you sure you want to delete "{{object}}"? {%endblocktrans%} </p>
+                                    <a href="{% url 'poems:poem_detail' pk=object.pk %}" class="btn btn-primary">{% trans "Cancel" %}</a>
+                                    <input class="btn btn-danger" type="submit" value='{% trans "Confirm" %}' />
+                                </form>
+                            </section>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}
+
+

@@ -23,3 +23,6 @@ __pycache__/
 # Sublime Text
 *.sublime-project
 *.sublime-workspace
+
+# Static
+CACHE/

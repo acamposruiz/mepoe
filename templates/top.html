@@ -1,5 +1,6 @@
 {% load static from staticfiles %}
 {% load i18n %}
+{% load avatar_tags %}
 <section id="top">
     <header id="home-top" class="nav-top nav-fixed headroom headroom--not-top headroom--unpinned">
         <div class="container">
@@ -21,14 +22,25 @@
                             <li><a href="#">{% trans "Notifications" %}</a></li>
                             <li><a href="#">{% trans "Explore" %}</a></li>
                             {% if user.is_authenticated %}
-                            <li><a href="{% url 'userprofiles:profile' %}">{% trans "Account" %}</a></li>
-                            <li><a href="{% url 'account_email' %}">{% trans "Change E-mail" %}</a></li>
-                            <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
-                            <li><a href="{% url 'poems:poem_add' %}">{% trans "Add Poem" %}</a></li>
+                            <li><button onclick="$('#profile-nav').toggle(200)" id="profile-element" class="profile-element btn-link btn">{% avatar user 20 %}{{user.username}}</button></li>
                             {% else %}
                             <li><a href="{% url 'account_login' %}">{% trans "Sign In" %}</a></li>
                             <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
                             {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+                <!-- 12 -->
+            </div>
+            <div id="profile-nav" hidden class="row profile-nav">
+                <div class="col-md-12 col-xs-12">
+                    <nav id="">
+                        <ul class="nav-list transistion profile-nav">
+                            <li><a href="{% url 'userprofiles:profile' %}" class="fa fa-home color-secondary-hbgli-1"><div class="desc">{% trans "Account" %}</div></a></li>
+                            <li><a href="{% url 'account_email' %}" class="fa fa-envelope color-secondary-hbgli-2"><div class="desc">{% trans "Change E-mail" %}</div></a></li>
+                            <li><a href="{% url 'account_logout' %}" class="fa fa-sign-out color-secondary-hbgli-3"><div class="desc">{% trans "Sign Out" %}</div></a></li>
+                            <li><a href="{% url 'poems:poem_add' %}" class="fa fa-pencil color-secondary-hbgli-4"><div class="desc">{% trans "New Poem" %}</div></a></li>
+                            <li><a href="{% url 'poems:poem_list_user' %}" class="fa fa-align-left color-secondary-hbgli-5"><div class="desc">{% trans "My Poems" %}</div></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -39,6 +51,8 @@
         <!--/ container -->
     </header>
     {% if front %}
+    {% comment %}
+    {% endcomment %}
     <div class="masthead-wrap">
         <div id="title" class="work-head">
             <div class="container">

@@ -10,11 +10,14 @@
 
 
 {% block content %}
-	<form enctype="multipart/form-data" action="" method="post" role="form">
+<section id="poem-form" class="poem-form"> <div class="container"> <div class="row"> <div class="col-md-12"> <article class="text-center">
+<h2>{% trans "New Form" %}</h2>
+<form enctype="multipart/form-data" action="" method="post" role="form">
     {% csrf_token %}
     {% bootstrap_form form layout='inline' %}
     <button type="submit" class="primaryAction btn btn-lg btn-primary">
         {% trans "Submit" %}
     </button>
-	</form>
+</form>
+</article></div></div></div></section>
 {% endblock %}
