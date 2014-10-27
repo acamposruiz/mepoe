@@ -11,6 +11,7 @@
 
 
 {% block content %}
+    {% include "head.html" %}
     {% for poem in object_list %}
     {% with forloop.counter|stringformat:"s" as forloop_counter %}
     {% with "color-secondary-"|add:forloop_counter as clname %}

@@ -5,13 +5,12 @@
         <div class="row">
             <div class="col-md-12">
                 <article>
-                {% if img %}
                     <figure>
-                        <img src="{% static img %}">
+                        <img src="{% static "img/content/home/work/pencil.svg" %}">
                     </figure>
-                {% endif %}
-                    <h3>{% trans title %}</h3>
-                    {% autoescape off %}{{ body }}{% endautoescape %}
+                    <h3>{{title}}</h3>
+                     <p class="info">
+                    Collaborative production of poetry and short stories</p>
                 </article>
             </div>
         </div>
