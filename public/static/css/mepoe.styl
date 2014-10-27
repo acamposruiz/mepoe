@@ -31,7 +31,11 @@ body
 .glyphicon
     color color-secondary-2
     padding 10px 5px
-    font-size 35px
+    font-size 30px
+    .desc
+        fon-xl()
+        padding-left 10px
+        padding-right 15px
     &:hover
         text-decoration none
 
@@ -139,18 +143,24 @@ article
     &.poem
         padding-bottom 40px
 
-.poem-text
-    margin-top 40px
-    pre
-        background none repeat scroll 0 0 rgba(0, 0, 0, 0)
-        border medium none
-        white-space pre-line
-        line-height 1.5em
-        font-weight 200
-        letter-spacing 0.03em
-        fon-xxxl()
-        &::first-letter
-            text-transform uppercase
+section
+    .poem-text
+        margin-top 40px
+        pre
+            background none repeat scroll 0 0 rgba(0, 0, 0, 0)
+            border medium none
+            white-space pre-line
+            line-height 1.5em
+            font-weight 200
+            letter-spacing 0.03em
+            fon-xxxl()
+            &::first-letter
+                text-transform uppercase
+    &[class*="color-secondary"]
+        .poem-text
+            pre
+                color white
+
 
 .pagination-section
     .pagination

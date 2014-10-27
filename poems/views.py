@@ -1,13 +1,13 @@
 # from django.shortcuts import render
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import DeleteView
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView
-from .models import Poem
+from .models import *
 from .forms import PoemForm
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse, reverse_lazy
+from django.utils.translation import ugettext as _
 
 
 @login_required
@@ -43,6 +43,74 @@ def PoemUpdate(request, pk):
     })
 
 
+class PoemDelete(DeleteView):
+    model = Poem
+    success_url = reverse_lazy('poems:poem_list')
+
+
+class PoemListBase(ListView):
+    model = Poem
+    paginate_by = 8
+    page_kwarg = 'page'
+
+
+class PoemList(PoemListBase):
+    queryset = Poem.objects.all().order_by('-pub_date')
+
+    def get_context_data(self, **kwargs):
+            context = super(PoemList, self).get_context_data(**kwargs)
+            context['front'] = True
+            title = _('Last Works')
+            context['title'] = title
+
+            return context
+
+
+class PoemListUser(PoemListBase):
+    def get_queryset(self):
+        return Poem.objects.filter(user=self.request.user).order_by('-pub_date')
+
+
+class PoemListBook(PoemListBase):
+    def get_context_data(self, *args, **kwargs):
+            context = super(PoemListBook, self).get_context_data(**kwargs)
+            book = Book.objects.get(pk=self.args[0])
+            title = _('Poems of %(book)s') % {'book': book}
+            context['title'] = title
+            return context
+
+    def get_queryset(self):
+        return Poem.objects.filter(book=self.args[0])\
+            .order_by('-pub_date')
+
+
+class PoemListAuthor(PoemListBase):
+    def get_context_data(self, *args, **kwargs):
+            context = super(PoemListAuthor, self).get_context_data(**kwargs)
+            author = Author.objects.get(pk=self.args[0])
+            title = _('Poems of %(author)s') % {'author': author}
+            context['title'] = title
+            return context
+
+    def get_queryset(self):
+        return Poem.objects.filter(author=self.args[0])\
+            .order_by('-pub_date')
+
+
+class PoemDetail(DetailView):
+    model = Poem
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(PoemDetail, self).get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['poem_list'] = Poem.objects.all()
+        if self.request.user.is_authenticated():
+            if self.request.user.pk is self.object.user.pk:
+                context['options'] = {'owner': True}
+        return context
+
+
 # class PoemCreate(CreateView):
 #     model = Poem
 #     fields = ['title', 'body']
@@ -64,54 +132,3 @@ def PoemUpdate(request, pk):
 #     @method_decorator(login_required)
 #     def dispatch(self, *args, **kwargs):
 #         return super(PoemUpdate, self).dispatch(*args, **kwargs)
-
-
-class PoemDelete(DeleteView):
-    model = Poem
-    success_url = reverse_lazy('poems:poem_list')
-
-
-class PoemList(ListView):
-    model = Poem
-    paginate_by = 8
-    page_kwarg = 'page'
-    queryset = Poem.objects.all().order_by('-pub_date')
-
-    def get_context_data(self, **kwargs):
-            # Call the base implementation first to get a context
-            context = super(PoemList, self).get_context_data(**kwargs)
-            # Add in a QuerySet of all the books
-            context['front'] = True
-            context['content'] = {}
-            context['content']['text'] = {
-                'head': {
-                    'title': 'Last Works',
-                    'body': '<p class="info">\
-                    Collaborative production of poetry and short stories</p>',
-                    'img': 'img/content/home/work/pencil.svg'
-                }}
-            return context
-
-
-class PoemListUser(ListView):
-    model = Poem
-    paginate_by = 8
-    page_kwarg = 'page'
-
-    def get_queryset(self):
-        return Poem.objects.filter(user=self.request.user).order_by('-pub_date')
-
-
-class PoemDetail(DetailView):
-    model = Poem
-
-
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super(PoemDetail, self).get_context_data(**kwargs)
-        # Add in a QuerySet of all the books
-        context['poem_list'] = Poem.objects.all()
-        if self.request.user.is_authenticated():
-            if self.request.user.pk is self.object.user.pk:
-                context['options'] = {'owner': True}
-        return context

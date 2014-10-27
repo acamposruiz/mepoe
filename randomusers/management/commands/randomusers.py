@@ -32,7 +32,7 @@ class Command(BaseCommand):
                                         verified=True)
 
             # Add avatar to user
-            image_url = u['user']['picture']
+            image_url = u['user']['picture']['large']
             import requests
             import tempfile
             from django.core import files

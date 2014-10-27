@@ -22,7 +22,7 @@
                             <li><a href="#">{% trans "Notifications" %}</a></li>
                             <li><a href="#">{% trans "Explore" %}</a></li>
                             {% if user.is_authenticated %}
-                            <li><button onclick="$('#profile-nav').toggle(200)" id="profile-element" class="profile-element btn-link btn">{% avatar user 20 %}{{user.username}}</button></li>
+                            <li><button onclick="$('#profile-nav').toggle(200)" id="profile-element" class="profile-element btn-link btn">{% avatar user 23 %}{{user.username}}</button></li>
                             {% else %}
                             <li><a href="{% url 'account_login' %}">{% trans "Sign In" %}</a></li>
                             <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>

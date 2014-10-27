@@ -11,32 +11,7 @@
 
 
 {% block content %}
-        <section class="work-shots">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <article class="poem">
-                            <section class="text-center">
-                                <h2>{{ object.title }}</h2>
-                                {% if options.owner %}
-                                    <a class="fa fa-gear" href="{% url 'poems:poem_update' pk=poem.pk %}"></a>
-                                    <a class="fa fa-trash" href="{% url 'poems:poem_delete' pk=poem.pk %}"></a>
-                                {% endif %}
-                                <figure class="text-center">
-                                    {% avatar object.user %}
-                                </figure>
-                                <h3>{{ object.user.username }}</h3>
-                                <div class="poem-text">
-                                <pre class="tk-adobe-garamond-pro">
-                                    {{ object.body }}
-                                </pre>
-                                </div>
-                            </section>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section>
+        {% include "poems/poem_detail_body.html" with poem=object %}
 {% endblock %}
 
 

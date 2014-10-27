@@ -5,7 +5,7 @@ from .models import *
 class PoemForm(ModelForm):
     class Meta:
         model = Poem
-        fields = ['title', 'body']
+        fields = ['title', 'body', 'author', 'book']
         widgets = {
             'body': Textarea(attrs={'wrap': 'hard'}),
         }

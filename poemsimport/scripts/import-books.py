@@ -29,7 +29,7 @@ from xml.dom.minidom import parse
 from ebooklib import epub
 from pathlib import Path
 import shutil
-from poems.models import Poem
+from poems.models import *
 from django.contrib.auth.models import User
 
 poem_dir = Path('poemsimport/scripts/books/')
@@ -80,49 +80,55 @@ def files2database():
                         title = h.firstChild.firstChild.data
                     except Exception, e:
                         title = None
+            first = False
             for v in dom.getElementsByTagName('p'):
                 try:
                     if len(v.firstChild.data) > 2:
-                        body += v.firstChild.data + '/'
+                        body += v.firstChild.data + '\t\n'
+                        first = True
                     else:
-                        body += '*'
+                        body += '\t\n'
                 except Exception, e:
-                    body += '*'
+                    if first:
+                        body += '\t\n'
+                    else:
+                        pass
             if len(body) > 2:
-                import random
-                user = User.objects.order_by('?')[0]
+                # import random
+                user = User.objects.exclude(pk=1).order_by('?')[0]
                 # Add avatar to user
-                image_type = random.choice((
-                    'abstract', 'animals', 'business', 'cats', 'city', 'food',
-                    'nightlife', 'fashion', 'people', 'nature', 'sports',
-                    'technics', 'transport'))
-                image_url = "http://lorempixel.com/900/480/%s/" % image_type
-                import requests
-                import tempfile
-                from django.core import files
+                # image_type = random.choice((
+                #     'abstract', 'animals', 'business', 'cats', 'city', 'food',
+                #     'nightlife', 'fashion', 'people', 'nature', 'sports',
+                #     'technics', 'transport'))
+                # image_url = "http://lorempixel.com/900/480/%s/" % image_type
+                # import requests
+                # import tempfile
+                # from django.core import files
 
                 # Steam the image from the url
-                request = requests.get(image_url, stream=True)
+                # request = requests.get(image_url, stream=True)
 
                 # Create a temporary file
-                lf = tempfile.NamedTemporaryFile(
-                    suffix='.jpg',
-                    prefix=title)
+                # lf = tempfile.NamedTemporaryFile(
+                #     suffix='.jpg',
+                #     prefix=title)
 
                 # Read the streamed image in sections
-                for block in request.iter_content(1024 * 8):
+                # for block in request.iter_content(1024 * 8):
 
-                    # If no more file then stop
-                    if not block:
-                        break
+                #     # If no more file then stop
+                #     if not block:
+                #         break
 
-                    # Write image block to temporary file
-                    lf.write(block)
+                #     # Write image block to temporary file
+                #     lf.write(block)
 
                 poem = Poem(
-                    user=user, title=title, author='Pablo Neruda',
-                    book='Veinte Poemas de Amor y Una Cancion Desesperada',
-                    body=body, image=files.File(lf))
+                    user=user, title=title,
+                    author=Author.objects.get(name='Gustavo Adolfo Becquer'),
+                    book=Book.objects.get(name='Rimas'),
+                    body=body)
                 poem.save()
                 printout(' ---> Poem ' + title + ' saved.')
         except Exception, e:

@@ -56,7 +56,7 @@ THIRD_PARTY_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'taggit',
+    # 'taggit',
     'compressor',
     # 'request',
     # 'allauth.socialaccount.providers.facebook',

@@ -7,43 +7,16 @@
 {% load static from staticfiles %}
 {% load avatar_tags %}
 
-{% block head_title %}{% trans "Last Works" %}{% endblock %}
+{% block head_title %}{{title}}{% endblock %}
 
 
 {% block content %}
     {% for poem in object_list %}
-        <section class="work-shots color-secondary-{{ forloop.counter }}">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <article class="poem">
-                            <div class="poem-image text-center">
-                                {# <img style="display: inline;" class="lazy" src="http://lorempixel.com/800/538/{% cycle 'abstract' 'people' 'animals' 'nature' %}?id={{ poem.pk }}" height="538" width="800"> #}
-                            </div>
-                            <section class="text-center">
-                                <h2>{{ poem.title }}</h2>
-                                <figure class="text-center">
-                                    {% avatar poem.user %}
-                                </figure>
-                                <h3>{{ poem.user.username }}</h3>
-                                <div class="poem-text">
-                                {% autoescape off %}
-                                    {{ poem.get_cut_poem }}
-                                {% endautoescape %}
-                                </div>
-                                <div class="show-more">
-                                    <a href="{% url 'poems:poem_detail' pk=poem.pk %}" class="btn btn-primary">{% trans "go to poem" %}...<i class="drib"></i></a>
-                                </div>
-                            </section>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section>
-        {% comment %}
-        <li>{{ poem.pub_date|date }} - {{ poem.title }}</li>
-
-        {% endcomment %}
+    {% with forloop.counter|stringformat:"s" as forloop_counter %}
+    {% with "color-secondary-"|add:forloop_counter as clname %}
+        {% include "poems/poem_detail_body.html" with class_name=clname mode="list" %}
+    {% endwith %}
+    {% endwith %}
     {% empty %}
         <h1>{% trans "No poems yet" %}</h1>
     {% endfor %}

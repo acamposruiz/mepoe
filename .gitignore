@@ -26,3 +26,6 @@ __pycache__/
 
 # Static
 CACHE/
+
+# Temp
+temp_data/
