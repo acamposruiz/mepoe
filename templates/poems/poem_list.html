@@ -26,12 +26,12 @@
         <div class="pagination">
             <span class="page-links">
                 {% if page_obj.has_previous %}
-                    <a class="glyphicon glyphicon-chevron-left" href="{% url 'poems:poem_list' %}?page={{ page_obj.previous_page_number }}"></a>
+                    <a class="glyphicon glyphicon-chevron-left" href="?page={{ page_obj.previous_page_number }}"></a>
                 {% else %}
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 {% endif %}
                 {% if page_obj.has_next %}
-                    <a class="glyphicon glyphicon-chevron-right" href="{% url 'poems:poem_list' %}?page={{ page_obj.next_page_number }}"></a>
+                    <a class="glyphicon glyphicon-chevron-right" href="?page={{ page_obj.next_page_number }}"></a>
                 {% else %}
                    <span class="glyphicon glyphicon-chevron-right"></span>
                 {% endif %}

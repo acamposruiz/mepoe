@@ -58,26 +58,40 @@ class PoemList(PoemListBase):
     queryset = Poem.objects.all().order_by('-pub_date')
 
     def get_context_data(self, **kwargs):
-            context = super(PoemList, self).get_context_data(**kwargs)
-            context['front'] = True
-            title = _('Last Works')
-            context['title'] = title
+        context = super(PoemList, self).get_context_data(**kwargs)
+        context['front'] = True
+        title = _('Last Works')
+        context['title'] = title
+        context['list'] = 'all'
 
-            return context
+        return context
 
 
 class PoemListUser(PoemListBase):
+    def get_context_data(self, *args, **kwargs):
+        context = super(PoemListUser, self).get_context_data(**kwargs)
+        user = User.objects.get(pk=self.args[0])
+        if user == self.request.user:
+            title = _('My Poems')
+        else:
+            title = _('Poems of %(user)s') % {'user': user}
+        context['title'] = title
+        context['list'] = 'user'
+        return context
+
     def get_queryset(self):
-        return Poem.objects.filter(user=self.request.user).order_by('-pub_date')
+        return Poem.objects.filter(user=self.args[0])\
+            .order_by('-pub_date')
 
 
 class PoemListBook(PoemListBase):
     def get_context_data(self, *args, **kwargs):
-            context = super(PoemListBook, self).get_context_data(**kwargs)
-            book = Book.objects.get(pk=self.args[0])
-            title = _('Poems of %(book)s') % {'book': book}
-            context['title'] = title
-            return context
+        context = super(PoemListBook, self).get_context_data(**kwargs)
+        book = Book.objects.get(pk=self.args[0])
+        title = _('Poems of %(book)s') % {'book': book}
+        context['title'] = title
+        context['list'] = 'book'
+        return context
 
     def get_queryset(self):
         return Poem.objects.filter(book=self.args[0])\
@@ -86,11 +100,12 @@ class PoemListBook(PoemListBase):
 
 class PoemListAuthor(PoemListBase):
     def get_context_data(self, *args, **kwargs):
-            context = super(PoemListAuthor, self).get_context_data(**kwargs)
-            author = Author.objects.get(pk=self.args[0])
-            title = _('Poems of %(author)s') % {'author': author}
-            context['title'] = title
-            return context
+        context = super(PoemListAuthor, self).get_context_data(**kwargs)
+        author = Author.objects.get(pk=self.args[0])
+        title = _('Poems of %(author)s') % {'author': author}
+        context['title'] = title
+        context['list'] = 'author'
+        return context
 
     def get_queryset(self):
         return Poem.objects.filter(author=self.args[0])\
@@ -103,11 +118,57 @@ class PoemDetail(DetailView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(PoemDetail, self).get_context_data(**kwargs)
-        # Add in a QuerySet of all the books
-        context['poem_list'] = Poem.objects.all()
         if self.request.user.is_authenticated():
             if self.request.user.pk is self.object.user.pk:
                 context['options'] = {'owner': True}
+        context['list'] = self.kwargs['list']
+        if self.kwargs['list'] == 'user':
+            try:
+                context['previus'] =\
+                    self.object.get_previous_by_pub_date(user=self.object.user)
+            except:
+                pass
+            try:
+                context['next'] =\
+                    self.object.get_next_by_pub_date(user=self.object.user)
+            except:
+                pass
+
+        elif self.kwargs['list'] == 'author':
+            try:
+                context['previus'] =\
+                    self.object.get_previous_by_pub_date(
+                        author=self.object.author)
+            except:
+                pass
+            try:
+                context['next'] =\
+                    self.object.get_next_by_pub_date(author=self.object.author)
+            except:
+                pass
+        elif self.kwargs['list'] == 'book':
+            try:
+                context['previus'] =\
+                    self.object.get_previous_by_pub_date(book=self.object.book)
+            except:
+                pass
+            try:
+                context['next'] =\
+                    self.object.get_next_by_pub_date(book=self.object.book)
+            except:
+                pass
+        else:
+            try:
+                context['previus'] =\
+                    self.object.get_previous_by_pub_date()
+            except:
+                pass
+            try:
+                context['next'] =\
+                    self.object.get_next_by_pub_date()
+            except:
+                pass
+
         return context
 
 
