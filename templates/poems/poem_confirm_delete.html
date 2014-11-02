@@ -19,7 +19,7 @@
                             <section class="text-center">
                                 <form action="" method="post">{% csrf_token %}
                                     <p> {%blocktrans%} Are you sure you want to delete "{{object}}"? {%endblocktrans%} </p>
-                                    <a href="{% url 'poems:poem_detail' pk=object.pk %}" class="btn btn-primary">{% trans "Cancel" %}</a>
+                                    <a href="{% url 'poems:poem_detail' pk=object.pk list="user" %}" class="btn btn-primary">{% trans "Cancel" %}</a>
                                     <input class="btn btn-danger" type="submit" value='{% trans "Confirm" %}' />
                                 </form>
                             </section>

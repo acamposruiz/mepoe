@@ -5,6 +5,7 @@
 {% load bootstrap3 %}
 {% load static from staticfiles %}
 {% load avatar_tags %}
+{% load favorite_tags %}
 
 <section class="work-shots {{ class_name }}">
     <div class="container">
@@ -12,23 +13,32 @@
             <div class="col-md-12">
                 <article class="poem">
                     <section class="text-center">
-                        <h2 class="title">
-                            {% if mode == 'detail' and previus %}<a title="{% trans "Previus" %}" class="btn btn-link fa fa-chevron-left" href="{% url 'poems:poem_detail' pk=previus.pk list=list %}"></a>{% endif %}
-                            {{ poem.title }}
-                            {% if mode == 'detail' and next %}<a title="{% trans "Next" %}" class="btn btn-link fa fa-chevron-right" href="{% url 'poems:poem_detail' pk=next.pk list=list %}"></a>{% endif %}
-                        </h2>
-                        {% if options.owner %}
-                            <a class="fa fa-gear" href="{% url 'poems:poem_update' pk=poem.pk %}"></a>
-                            <a class="fa fa-trash" href="{% url 'poems:poem_delete' pk=poem.pk %}"></a>
-                        {% endif %}
-                        <figure class="text-center">
+                        {# USERNAME #}
+                        <h3><a href="{% url 'poems:poem_list_user' poem.user.pk %}" class="btn btn-link fa">{{ poem.user.username }}</a></h3>
+                        {# AVATAR #}
+                        <figure class="text-center avatar-container">
                             {% avatar poem.user %}
                         </figure>
-                        <h3><a href="{% url 'poems:poem_list_user' poem.user.pk %}" class="btn btn-link fa">{{ poem.user.username }}</a></h3>
+                        <div class="title-container">
+                            {# TITLE #}
+                            <h2 class="title"> {{ poem.title }} </h2>
+                            <div class="btn-group">
+                            {% if poem.user == user %}
+                            {# EDIT LINKS #}
+                                <a class="fa fa-gear" href="{% url 'poems:poem_update' pk=poem.pk %}"></a>
+                                <a class="fa fa-trash" href="{% url 'poems:poem_delete' pk=poem.pk %}"></a>
+                            {% else %}
+                            {# FAVORITE LINKS #}
+                                {% favorite_button poem %}
+                            {% endif %}
+                            </div>
+                        </div>
+                        {# TAGS #}
                         <div class="btn-group">
                           <a href="{% url 'poems:poem_list_author' poem.author.pk %}" class="btn btn-link fa fa-graduation-cap "><span class="desc">{{ poem.author }}</span></a>
                           <a href="{% url 'poems:poem_list_book' poem.book.pk %}" class="btn btn-link fa fa-book"><span class="desc">{{ poem.book }}</span></a>
                         </div>
+                        {# BODY #}
                         {% if mode == 'list' %}
                             <div class="poem-text">
                             <pre class="tk-adobe-garamond-pro">

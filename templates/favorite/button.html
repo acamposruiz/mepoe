@@ -1,0 +1,7 @@
+{% load url from future %}
+
+<div class="favorite">
+  <button class="btn btn-link favorite" href="{% url 'favorite.views.add_or_remove' %}" model="{{ target_model }}" id="target_{{ target_object_id }}">
+    <i class="fa fa-star{% if not undo %}-o{% endif %}"></i>
+  </button>
+</div>

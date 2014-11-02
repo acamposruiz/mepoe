@@ -8,6 +8,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.utils.translation import ugettext as _
+from favorite.models import Favorite
+from django.contrib.contenttypes.models import ContentType
 
 
 @login_required
@@ -18,7 +20,8 @@ def PoemCreate(request):
             form.instance.user = request.user
             form.save()
             return HttpResponseRedirect(reverse('poems:poem_detail',
-                                        kwargs={'pk': form.instance.pk}))
+                                        kwargs={'pk': form.instance.pk,
+                                        'list': 'user'}))
     else:
         form = PoemForm()
 
@@ -34,7 +37,8 @@ def PoemUpdate(request, pk):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('poems:poem_detail',
-                                        kwargs={'pk': form.instance.pk}))
+                                        kwargs={'pk': form.instance.pk,
+                                        'list': 'user'}))
     else:
         form = PoemForm(instance=Poem.objects.get(pk=pk))
 
@@ -82,6 +86,24 @@ class PoemListUser(PoemListBase):
     def get_queryset(self):
         return Poem.objects.filter(user=self.args[0])\
             .order_by('-pub_date')
+
+
+class PoemListFavorites(PoemListBase):
+    template_name = "poems/poem_list.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(PoemListFavorites, self).get_context_data(**kwargs)
+        title = _('My Favorites')
+        context['title'] = title
+        context['list'] = 'favorite'
+        return context
+
+    def get_queryset(self):
+        user = User.objects.get(pk=self.args[0])
+        queryset = Favorite.objects.filter(
+            user=user, target_content_type=ContentType.objects.get(
+                app_label="poems", model="poem")).order_by('-timestamp')
+        return [favorite.target for favorite in queryset]
 
 
 class PoemListBook(PoemListBase):
@@ -155,6 +177,28 @@ class PoemDetail(DetailView):
             try:
                 context['next'] =\
                     self.object.get_next_by_pub_date(book=self.object.book)
+            except:
+                pass
+        elif self.kwargs['list'] == 'favorite':
+            favorite_poem = Favorite.objects.get(
+                user=self.request.user,
+                target_object_id=self.object.pk,
+                target_content_type=ContentType.objects.get(
+                    app_label="poems", model="poem"))
+            try:
+                context['previus'] =\
+                    favorite_poem.get_previous_by_timestamp(
+                        user=self.request.user,
+                        target_content_type=ContentType.objects.get(
+                            app_label="poems", model="poem")).target
+            except:
+                pass
+            try:
+                context['next'] =\
+                    favorite_poem.get_next_by_timestamp(
+                        user=self.request.user,
+                        target_content_type=ContentType.objects.get(
+                            app_label="poems", model="poem")).target
             except:
                 pass
         else:

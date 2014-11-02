@@ -32,6 +32,7 @@
                 </div>
                 <!-- 12 -->
             </div>
+            {% if user.pk %}
             <div id="profile-nav" hidden class="row profile-nav">
                 <div class="col-md-12 col-xs-12">
                     <nav id="">
@@ -40,12 +41,14 @@
                             <li><a href="{% url 'account_email' %}" class="fa fa-envelope color-secondary-hbgli-2"><div class="desc">{% trans "Change E-mail" %}</div></a></li>
                             <li><a href="{% url 'account_logout' %}" class="fa fa-sign-out color-secondary-hbgli-3"><div class="desc">{% trans "Sign Out" %}</div></a></li>
                             <li><a href="{% url 'poems:poem_add' %}" class="fa fa-pencil color-secondary-hbgli-4"><div class="desc">{% trans "New Poem" %}</div></a></li>
-                            <li><a href="{% url 'poems:poem_list_user' %}" class="fa fa-align-left color-secondary-hbgli-5"><div class="desc">{% trans "My Poems" %}</div></a></li>
+                            <li><a href="{% url 'poems:poem_list_user' user.pk %}" class="fa fa-align-left color-secondary-hbgli-5"><div class="desc">{% trans "My Poems" %}</div></a></li>
+                            <li><a href="{% url 'poems:poem_list_favorites' user.pk %}" class="fa fa-star color-secondary-hbgli-6"><div class="desc">{% trans "My Favorites" %}</div></a></li>
                         </ul>
                     </nav>
                 </div>
                 <!-- 12 -->
             </div>
+            {% endif %}
             <!-- / row -->
         </div>
         <!--/ container -->

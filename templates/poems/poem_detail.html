@@ -12,6 +12,11 @@
 
 {% block content %}
         {% include "poems/poem_detail_body.html" with poem=object mode="detail" %}
+
+        {% url 'poems:poem_detail' pk=previus.pk list=list as url_previus %}
+        {% url 'poems:poem_detail' pk=next.pk list=list as url_next %}
+        {% include "pagination.html" %}
+
 {% endblock %}
 
 

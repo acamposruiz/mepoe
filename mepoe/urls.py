@@ -17,6 +17,7 @@ urlpatterns = patterns('',
                        url(r'^$', home, name="home"),
                        url(r'^accounts/', include('allauth.urls')),
                        url(r'^avatar/', include('avatar.urls')),
+                       url(r'^', include('favorite.urls')),
                        # url(r'^accounts/', include('userena.urls')),
                        url(r'^accounts/', include(
                            'userprofiles.urls', namespace="userprofiles")),

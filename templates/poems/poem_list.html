@@ -22,22 +22,21 @@
         <h1>{% trans "No poems yet" %}</h1>
     {% endfor %}
     {% if is_paginated %}
-    <section class="pagination-section"> <div class="container"> <div class="row"> <div class="col-md-12">
-        <div class="pagination">
-            <span class="page-links">
-                {% if page_obj.has_previous %}
-                    <a class="glyphicon glyphicon-chevron-left" href="?page={{ page_obj.previous_page_number }}"></a>
-                {% else %}
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                {% endif %}
-                {% if page_obj.has_next %}
-                    <a class="glyphicon glyphicon-chevron-right" href="?page={{ page_obj.next_page_number }}"></a>
-                {% else %}
-                   <span class="glyphicon glyphicon-chevron-right"></span>
-                {% endif %}
-            </span>
-        </div>
-    </div> </div> </section>
+        {% if page_obj.has_next and page_obj.has_previous %}
+            {% with page_obj.next_page_number|stringformat:"s" as next_page_number %} {% with "?page="|add:next_page_number as url_next %}
+            {% with page_obj.previous_page_number|stringformat:"s" as previous_page_number %} {% with "?page="|add:previous_page_number as url_previus %}
+                {% include "pagination.html" with previus=page_obj.has_previous next=page_obj.has_next %}
+            {% endwith %} {% endwith %}
+            {% endwith %} {% endwith %}
+        {% elif page_obj.has_next %}
+            {% with page_obj.next_page_number|stringformat:"s" as next_page_number %} {% with "?page="|add:next_page_number as url_next %}
+                {% include "pagination.html" with next=page_obj.has_next %}
+            {% endwith %} {% endwith %}
+        {% elif page_obj.has_previous %}
+            {% with page_obj.previous_page_number|stringformat:"s" as previous_page_number %} {% with "?page="|add:previous_page_number as url_previus %}
+                {% include "pagination.html" with previus=page_obj.has_previous %}
+            {% endwith %} {% endwith %}
+        {% endif %}
     {% endif %}
 {% endblock %}
 

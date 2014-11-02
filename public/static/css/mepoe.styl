@@ -6,11 +6,11 @@ for color, i in color-secondary-list
     .color-secondary-hbgli-{i}
         background-color: color
         &:hover
-            background-color: lightness(color,70%)
+            background-color: lighten(color,45%)
     .color-secondary-hbgdar-{i}
         background-color: color
         &:hover
-            background-color: saturation(color,70%)
+            background-color: darken(color,45%)
 
 [class*="color-secondary"]
     color white
@@ -25,16 +25,28 @@ body
             padding-bottom 20px
 
 .poem
-    h2.title
-        .btn.fa
-            fon-xxxxl()
-            opacity 0.2
-            &:hover
-                opacity 1
-            &.fa-chevron-left
-                float left
-            &.fa-chevron-right
-                float right
+    .avatar-container
+        margin-bottom 10px
+    .title-container
+        h2.title
+            display inline
+            .btn.fa
+                fon-xxxxl()
+                opacity 0.2
+                &:hover
+                    opacity 1
+                &.fa-chevron-left
+                    float left
+                &.fa-chevron-right
+                    float right
+        & > .btn-group
+            display inline
+            .favorite
+                display inline
+                vertical-align: top;
+                button, i
+                    padding 0px
+                    margin 0px
 
 .nav-list li a
     fon-xl()
@@ -103,17 +115,20 @@ footer
             fon-xl()
             color: color-link
 
-.btn-primary
-    background-color color-primary-5
-    border medium none
-    &:hover
-        background-color color-primary-2
+.btn
+    &.btn-primary
+        background-color color-primary-5
+        border medium none
+        &:hover
+            background-color color-primary-2
 
-.btn-link
-    color: color-link
-    &:hover
-        text-decoration none
-        color: color-link-hover
+    &.btn-link
+        color: color-link
+        .fa, .glyphicon
+            color: color-link
+        &:hover
+            text-decoration none
+            color: color-link-hover
 
 
 
@@ -186,6 +201,8 @@ section
                 margin: 13px
                 padding: 20px
                 color white
+                &[href^="/poem"]
+                    background-color color-primary-0
                 &:hover
                     text-decoration none
                     background-color color-link

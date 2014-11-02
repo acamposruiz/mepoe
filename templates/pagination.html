@@ -1,0 +1,19 @@
+{% load i18n %}
+{% load url from future %}
+
+<section class="pagination-section"> <div class="container"> <div class="row"> <div class="col-md-12">
+    <div class="pagination">
+        <span class="page-links">
+            {% if previus %}
+                <a title="{% trans "Previus" %}" class="glyphicon glyphicon-chevron-left" href="{{url_previus}}"></a>
+            {% else %}
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            {% endif %}
+            {% if next %}
+                <a title="{% trans "Next" %}" class="glyphicon glyphicon-chevron-right" href="{{url_next}}"></a>
+            {% else %}
+               <span class="glyphicon glyphicon-chevron-right"></span>
+            {% endif %}
+        </span>
+    </div>
+</div> </div> </section>
