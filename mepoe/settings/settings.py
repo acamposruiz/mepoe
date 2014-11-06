@@ -246,6 +246,7 @@ THUMBNAIL_ALIASES = {
 AVATAR_STORAGE_DIR = 'avatars'
 AVATAR_GRAVATAR_BACKUP = False
 AVATAR_DEFAULT_URL = 'images/avatar_default.png'
+AVATAR_AUTO_GENERATE_SIZES = (23, 80,)
 # AVATAR_DEFAULT_URL = str(
 #     BASE_DIR / 'userprofiles/static/images/avatar_default.png')
 

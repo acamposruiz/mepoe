@@ -35,8 +35,12 @@
                         </div>
                         {# TAGS #}
                         <div class="btn-group">
-                          <a href="{% url 'poems:poem_list_author' poem.author.pk %}" class="btn btn-link fa fa-graduation-cap "><span class="desc">{{ poem.author }}</span></a>
-                          <a href="{% url 'poems:poem_list_book' poem.book.pk %}" class="btn btn-link fa fa-book"><span class="desc">{{ poem.book }}</span></a>
+                            {% if poem.author %}
+                                <a href="{% url 'poems:poem_list_author' poem.author.pk %}" class="btn btn-link fa fa-graduation-cap "><span class="desc">{{ poem.author }}</span></a>
+                            {% endif %}
+                            {% if poem.book %}
+                                <a href="{% url 'poems:poem_list_book' poem.book.pk %}" class="btn btn-link fa fa-book"><span class="desc">{{ poem.book }}</span></a>
+                            {% endif %}
                         </div>
                         {# BODY #}
                         {% if mode == 'list' %}

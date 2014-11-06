@@ -25,8 +25,8 @@ class Book(models.Model):
 class Poem(models.Model):
     user = models.ForeignKey(User, blank=True)
     title = models.CharField(max_length=60, blank=True)
-    author = models.ForeignKey(Author)
-    book = models.ForeignKey(Book)
+    author = models.ForeignKey(Author, null=True, blank=True)
+    book = models.ForeignKey(Book, null=True, blank=True)
     body = models.TextField(max_length=10000)
     slug = models.SlugField(max_length=100, blank=True)
     pub_date = models.DateTimeField(auto_now_add=True)

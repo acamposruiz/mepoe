@@ -1,8 +1,16 @@
 @import 'public/static/css/variables.styl'
 
+// for color in colors
+//     {color[0]} = color[1]
+//     .{color}
+//         background-color color[1]
+
+
 for color, i in color-secondary-list
     .color-secondary-{i}
         background-color: color
+    .color-secondary-{i}-color
+        color: color
     .color-secondary-hbgli-{i}
         background-color: color
         &:hover
@@ -12,17 +20,35 @@ for color, i in color-secondary-list
         &:hover
             background-color: darken(color,45%)
 
+for color, i in color-primary-list
+    .color-primary-{i}
+        background-color: color
+    .color-primary-{i}-color
+        color: color
+    .color-primary-hbgli-{i}
+        background-color: color
+        &:hover
+            background-color: lighten(color,45%)
+    .color-primary-hbgdar-{i}
+        background-color: color
+        &:hover
+            background-color: darken(color,45%)
+
 [class*="color-secondary"]
     color white
 
 
 body
+    color color-secondary-9
     padding-top: 70px
     background-color: color-bg-b
     padding-bottom 40px
     & > section
         &:last-of-type:not(.pagination-section)
             padding-bottom 20px
+
+.color-link-color
+    color color-link
 
 .poem
     .avatar-container
